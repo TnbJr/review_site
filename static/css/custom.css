@@ -1,0 +1,72 @@
+.text-align-center {
+      text-align: center;
+}
+
+body {
+    border-top: 4px solid #bb9944;
+    background-size: 80px 60px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    }
+
+
+.main-jumbotron{
+  background-color: white;
+  padding: 30px;
+}
+
+.jumbotron{
+  background-color: white;
+}
+
+.jumbotron h1 {
+  font-weight: 100;
+}
+
+.jumbotron p {
+  font-weight: 200;
+  font-size: 35px
+}
+
+.container-home{
+  color: black;
+}
+
+.featured-row {
+    text-align:center;
+    background-color:white;
+    min-height:200px;
+    padding:40px 0;
+    border-bottom: 1px solid #EEE;
+    margin-bottom: 250px;
+      }
+
+.footer {
+    margin-top:200px; 
+    text-align:center;
+    background-color: white;
+}
+
+.fa-facebook-square{
+  color: #3b5998;
+}
+
+.fa-twitter-square{
+  color: #4099FF;
+}
+
+.fa-linkedin-square{
+  color: #007bb6;
+}
+
+.fa-reddit-square{
+  color: #900020;
+}
+
+.fa-google-plus-square{
+  color: #D34836;
+}
+
+

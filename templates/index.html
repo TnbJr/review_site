@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+
+<style>
+{% block style %}
+  body{
+  background: url('{% static "img/crumble-honey.jpg" %}') no-repeat center center fixed;
+}
+{% endblock %}
+</style>
+
+{% block jumbotron %}
+<div class='jumbotron main-jumbotron'>
+  <div class="row" >
+    	<div class='col-sm-6'>
+      	<h1> EasyDabble</h1>
+      	 <p>Is Coming! <br><br>EasyDabble is a resource website for cannabis extracts. </p>
+      	 <p>
+      	   <a class="btn btn-lg btn-default btn-block" href= "{% url 'sitemaps:about'%}" role="button">Learn More &raquo;</a>
+      	 </p>
+    </div>
+  <div class='col-sm-6'>
+      <div class ="embed-responsive embed-responsive-4by3">
+    		  <iframe width="560" height="315" src="https://www.youtube.com/embed/2i464hZm4kM" frameborder="0" allowfullscreen></iframe>
+    	</div>
+    </div>	 
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container text-center container-home"> 
+  <div class ='col-sm-6 col-sm-offset-3'>
+  	<i class="fa fa-unlock fa-5x"></i>
+  		<p class='lead text-align-center'>
+        Unlock first news on content <br> 
+        Learn more about cannabis products
+      </p>  
+  		<form method='POST' action=''>{% csrf_token %}
+    		{{ form|crispy }}
+    		<input class ='btn btn-primary' type='submit' value='Sign Up'  />
+  		</form>
+  	<p class ='lead'>
+      Stay updated on industry changing news <br>
+      Save Money! On your next cannabis purchase  
+    </p>
+  </div>
+</div>
+<div class='row featured-row'>
+  <div class='col-sm-12'>
+    <div class='col-sm-3 marketing-content'>
+        <i class="fa fa-users fa-3x"></i>
+        <h2>Community</h2>
+        <p class='lead'>
+          Connect with a community of like-minded people focused on providing each other with useful information.    
+        </p>
+      </div>
+    <div class='col-sm-3 marketing-content'>
+        <i class="fa fa-tasks fa-3x"></i>
+        <h2>Reviews</h2>
+        <p class='lead'>
+          Read the best reviews of the most popular cannabis extract products that consumers are raving about. 
+        </p>
+    </div>
+    <div class='col-sm-3 marketing-content'>
+        <i class="fa fa-newspaper-o fa-3x"></i>
+        <h2>Latest News</h2>
+        <p class='lead'>
+        Stay up to date on the latest news affecting the cannabis extract industry.</p>
+    </div>
+    <div class='col-sm-3 marketing-content'>
+        <i class="fa fa-list-ol fa-3x"></i>
+        <h2>Tutorials</h2>
+        <p class='lead'>
+         Read step-by-step tutorials on how to use cannabis extract products safely and efficiently.  
+        </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
