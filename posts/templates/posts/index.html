@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+{% include "navbar.html" %}
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 per" >
+			  {% for obj in queryset_list %}
+			<div class="media">
+				<div class="media-left media-top">
+					<a href="{{ obj.get_absolute_url }}">
+						{% if obj.image %}
+				       <img src="{{ obj.image.url }}" class="img-reponsive thumbnail" width="250" height="167" />
+				      </a>
+				      {% endif %}
+				</div>
+					<div class="media-body">
+					
+							<h4><a href="{{ obj.get_absolute_url }}">{{ obj.title|title }}</a></h4>
+							<p>{{ obj.content|truncatewords:20 }}</p>
+							{{ obj.id }} 
+							<a href="{% url 'post:update' slug=obj.slug %}">Update</a>
+						
+					</div>
+				</div>
+				<hr>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="pagination">
+    <span class="step-links">
+        {% if queryset_list.has_previous %}
+            <a href="?page={{ queryset_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ queryset_list.number }} of {{ queryset_list.paginator.num_pages }}.
+        </span>
+
+        {% if queryset_list.has_next %}
+            <a href="?page={{ queryset_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+    </div>
+{% endblock %}

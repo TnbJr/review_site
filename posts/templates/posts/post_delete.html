@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% include "navbar.html" %}
+  <h1>{{ title }}</h1>
+
+
+		<form name="content-delete" action="{% url 'post:delete' slug=slug %}" method="POST">
+	    {% csrf_token %}
+		<input type="submit" value="Delete Content">
+		</form>	
+
+{% endblock %}

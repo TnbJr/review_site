@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% include "navbar.html" %}
+  <h1>{{title}}</h1>
+
+	{% if form %}
+		<form name="content-post" action="{% url 'post:create'%}"  enctype="multipart/form-data" method="POST">
+	    {% csrf_token %}
+	    {{ form|crispy }}
+		<input type="submit" value="Create Content">
+		</form>
+	{% endif %}
+{% endblock %}
