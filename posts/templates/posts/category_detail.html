@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+{% include "navbar.html" %}
+  <h1>{{ title|title }} </h1>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 per" >
+			{% for obj in instance %}
+				{% for post in obj.contentpost_set.all %}
+				{% if post.image %}
+				       <img src="{{ post.image.url }}" class="img-reponsive thumbnail" width="250" height="167" />
+				      </a>
+				      {% endif %}
+				<h4><a href="{{ post.get_absolute_url }}">{{ post.title|title }}</a></h4>
+					<p>{{ post.content }}</p>
+				{% endfor %}
+			{% endfor %}
+</div>
+	</div>
+		</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ContentPost
+from .models import ContentPost, Category
 # Register your models here.
 class ContentPostAdmin(admin.ModelAdmin):
 	list_display = ["title", "created"]
@@ -12,3 +12,4 @@ class ContentPostAdmin(admin.ModelAdmin):
 
 
 admin.site.register(ContentPost, ContentPostAdmin)
+admin.site.register(Category)

@@ -10,7 +10,10 @@ body {
     -o-background-size: cover;
     background-size: cover;
     }
-
+.navbar-static-top{
+  background-color:#bb9944;
+  margin-bottom: 0px;
+}
 
 .main-jumbotron{
   background-color: white;
@@ -67,6 +70,11 @@ body {
 
 .fa-google-plus-square{
   color: #D34836;
+}
+
+p{
+  word-wrap: break-word;
+
 }
 
 

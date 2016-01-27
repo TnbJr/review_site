@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-default navbar-static-top" style= 'background-color:#bb9944; margin-bottom: 0px;'>
+<nav class="navbar navbar-default navbar-static-top">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -16,6 +16,8 @@
         <li><a href="{% url 'sitemaps:index' %}">Home</a></li>
         <li><a href="{% url 'sitemaps:about' %}">About</a></li>
         <li><a href="{% url 'contact:contact' %}">Contact</a></li>
+        <li><a href="{% url 'post:detail-category' slug='news' %}">News</a></li>
+        <li><a href="{% url 'post:detail-category' slug='review' %}">Reviews</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

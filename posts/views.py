@@ -4,10 +4,27 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, Http404
 from django.shortcuts import render,redirect, get_object_or_404
 from django.views.generic import View
-from .models import ContentPost
+from .models import ContentPost, Category 
 from .forms import ContentPostForm
 
 # Create your views here.
+class CategoryIndexView(View):
+	def get(self, request):
+		queryset = Category.objects.all()
+		context={
+			'queryset_list': queryset
+		}
+		return render(request, "posts/index.html", context)
+
+class CategoryDetailView(View):
+	def get(self, request, slug):
+		instance = Category.objects.filter(slug=slug)
+		context = {
+			"title": slug,
+			"instance": instance,
+		}
+		return render(request, "posts/category_detail.html", context)
+
 class PostIndexView(View):
 	def get(self, request):
 		queryset_list = ContentPost.objects.all().order_by("-created")
@@ -58,10 +75,10 @@ class PostCreateView(View):
 			instance = post_form.save(commit=False)
 			instance.save()
 			return redirect('post:index-post')
-		# context = {
-		#   'form': compliment_form,
-		#   }
-		# return render(request, 'posts/post_create.html', context)
+		context = {
+		  'form': compliment_form,
+		  }
+		return render(request, 'posts/post_create.html', context)
 
 class PostUpdateView(View):
 	def get(self, request, slug):
