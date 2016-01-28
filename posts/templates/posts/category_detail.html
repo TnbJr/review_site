@@ -14,7 +14,7 @@
 				      </a>
 				      {% endif %}
 				<h4><a href="{{ post.get_absolute_url }}">{{ post.title|title }}</a></h4>
-					<p>{{ post.content }}</p>
+					<p>{{ post.content|truncatewords:20 }}</p>
 				{% endfor %}
 			{% endfor %}
 </div>

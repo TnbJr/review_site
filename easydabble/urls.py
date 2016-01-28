@@ -23,6 +23,7 @@ urlpatterns = [
 	url(r'^', include('sitemaps.urls', namespace='sitemaps')),
 	url(r'^contact', include('contacts.urls', namespace='contact')),
 	url(r'^article/', include('posts.urls', namespace='post')),
+	url(r'^video/', include('videos.urls', namespace='video')),
 ]   
 
 if settings.DEBUG:
