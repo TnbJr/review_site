@@ -24,6 +24,10 @@ urlpatterns = [
 	url(r'^contact', include('contacts.urls', namespace='contact')),
 	url(r'^article/', include('posts.urls', namespace='post')),
 	url(r'^video/', include('videos.urls', namespace='video')),
+	url(r'^review/', include('reviews.urls', namespace='review')),
+	url(r'^accounts/', include('allauth.urls', namespace='allauth')),
+	url(r'^profile/', include('users.urls', namespace='profile')),
+
 ]   
 
 if settings.DEBUG:

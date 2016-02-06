@@ -50,7 +50,7 @@ class PostIndexView(View):
 class PostDetailView(View):
 	def get(self, request, slug=None):
 		instance = get_object_or_404(ContentPost, slug=slug)
-		share_string =quote_plus(instance.title)
+		share_string = quote_plus(instance.title)
 		context = {
 			"title": instance.title,
 			"instance": instance,
@@ -67,7 +67,7 @@ class PostCreateView(View):
 			'title': "Create New Content" ,
 			'form': ContentPostForm(),
 			}
-		return render(request, 'posts/post_create.html', context)
+		return render(request, "posts/post_create.html", context)
 
 	def post(self, request):
 		post_form = ContentPostForm(request.POST or None, request.FILES or None)
@@ -75,10 +75,10 @@ class PostCreateView(View):
 			instance = post_form.save(commit=False)
 			instance.save()
 			return redirect('post:index-post')
-		context = {
-		  'form': compliment_form,
-		  }
-		return render(request, 'posts/post_create.html', context)
+		# context = {
+		#   'form': compliment_form,
+		#   }
+		return render(request, "posts/post_create.html", context)
 
 class PostUpdateView(View):
 	def get(self, request, slug):
@@ -90,7 +90,7 @@ class PostUpdateView(View):
 			'form':ContentPostForm(None, instance=content_post),
 			'slug': slug
 			}
-		return render(request, 'posts/post_update.html', context)
+		return render(request, "posts/post_update.html", context)
 	
 	def post(self, request, slug):
 		#should add validator to make sure compliment_id is in database
@@ -104,7 +104,7 @@ class PostUpdateView(View):
 			'form':ContentPostForm(None, instance=content_post),
 			'slug': slug
 			}
-		return render(request, 'posts/post_update.html', context)
+		return render(request, "posts/post_update.html", context)
 
 class PostDeleteView(View):
 	def get(self, request, slug):
@@ -114,7 +114,7 @@ class PostDeleteView(View):
 			'title': "Delete Content",
 			'slug': slug
 		}
-		return render(request, 'posts/post_delete.html', context)
+		return render(request, "posts/post_delete.html", context)
 
 	def post(self, request, slug):
 		content_post = get_object_or_404(ContentPost, slug=slug)

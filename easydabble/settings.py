@@ -22,6 +22,7 @@ EMAIL_HOST_USER = EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -49,7 +50,16 @@ INSTALLED_APPS = [
 	'newsletters',
 	'contacts',
 	'posts',
-	'videos'
+	'videos',
+	'reviews',
+	'users',
+
+
+	'django.contrib.sites',
+	'allauth',
+	'allauth.account',
+	'allauth.socialaccount',
+	'allauth.socialaccount.providers.facebook',
 
 ]
 
@@ -143,3 +153,34 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_root") 
+
+
+AUTHENTICATION_BACKENDS = (
+	# Needed to login by username in Django admin, regardless of `allauth`
+	'django.contrib.auth.backends.ModelBackend',
+
+	# `allauth` specific authentication methods, such as login by e-mail
+	'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+
+
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+ACCOUNT_USERNAME_REQUIRED = True      # Defaults to True
+ACCOUNT_EMAIL_REQUIRED = True 
+
+# SOCIALACCOUNT_PROVIDERS =     {'facebook':
+
+# 	   {'METHOD': 'oauth2',
+
+# 		'SCOPE': ['email'],
+
+# 		'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+
+# 		'LOCALE_FUNC': lambda request: 'en_US',
+
+# 		'VERSION': 'v2.4'}}
+

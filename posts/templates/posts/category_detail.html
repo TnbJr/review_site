@@ -10,10 +10,10 @@
 			{% for obj in instance %}
 				{% for post in obj.contentpost_set.all %}
 				{% if post.image %}
-				       <img src="{{ post.image.url }}" class="img-reponsive thumbnail" width="250" height="167" />
+					<img src="{{ post.image.url }}" class="img-reponsive thumbnail" width="250" height="167" />
 				      </a>
 				      {% endif %}
-				<h4><a href="{{ post.get_absolute_url }}">{{ post.title|title }}</a></h4>
+					<h4><a href="{{ post.get_absolute_url }}">{{ post.title|title }}</a></h4>
 					<p>{{ post.content|truncatewords:20 }}</p>
 				{% endfor %}
 			{% endfor %}

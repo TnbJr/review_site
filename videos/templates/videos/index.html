@@ -6,17 +6,17 @@
 {% include "navbar.html" %}
 	<h1>Omg</h1>
 {% for item in queryset %}
-	<!-- {% video item.video 'large' %}
-	{{ item.description }}
-	{video.url }} -->
-	thumbnail: {{ item.video.thumbnail }}
+	
 	{% video item.video as my_video %}
-   <p>URL: {{ my_video.url }}</p> 
-    <p>{{ item.description }}</p>
-    <img src="{{ my_video.thumbnail }}" width=600 height=450 class="img-rounded">
-    {% video my_video 'small' %}
+   <!-- <p>URL: {{ my_video.url }}</p>  -->
+    <!-- <p>{{ my_video.description }}</p> -->
+    <h4><a href="{{ item.get_absolute_url }}">{{ item.title|title }}</a></h4>
+    <img src="{{ my_video.thumbnail }}" width=250 height=167 class="img-rounded">
+    <p>{{ item.description }}</p> 
+    <a href="{% url 'video:update' pk=item.id %}">Update</a>
+   <!--  {% video my_video 'small' %} -->
 
-{% endvideo %}
+	{% endvideo %}
 {% endfor %}
 
 

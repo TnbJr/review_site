@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load embed_video_tags %}
+
+{% block content %}
+{% include "navbar.html" %}
+	<h1>Detail</h1>
+	<p></p>
+	<p></p>
+	{{ instance.id }} 
+	{{ instance.description }} 
+	 {% video instance.video 'small' %}
+
+
+
+
+{% endblock %}

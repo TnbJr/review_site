@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.db.models.signals import pre_save
 # Create your models here.
 class Video(models.Model):
-	title = models.CharField(max_length=255)
+	title = models.CharField(max_length=255, unique=True)
 	slug = models.SlugField(unique=True)
 	description = models.TextField()
 	draft = models.BooleanField(default=False)
@@ -17,6 +17,11 @@ class Video(models.Model):
 	def __str__(self):
 		return self.title
 
-	# def get_absolute_url(self):
-	# 	return reverse()
 
+	def get_absolute_url(self):
+		return reverse("video:detail", kwargs={"pk": self.id})
+
+	def save(self, *args, **kwargs):
+		if not self.slug:
+			self.slug = slugify(self.title)
+			super(Video, self).save(*args, **kwargs) 

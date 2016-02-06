@@ -9,5 +9,4 @@ class ContentPostForm(forms.ModelForm):
 				 'content',
 				 'draft',
 				 'published'
-
 				 ]

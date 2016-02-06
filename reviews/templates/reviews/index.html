@@ -1,0 +1,9 @@
+<h1>List</h1>
+
+{% for item in query_list %}
+<ul>
+	<li><a href="{{ item.get_absolute_url }}">{{ item.name|title }}</a></li>
+
+</ul>
+
+{% endfor %}
