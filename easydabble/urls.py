@@ -23,10 +23,12 @@ urlpatterns = [
 	url(r'^', include('sitemaps.urls', namespace='sitemaps')),
 	url(r'^contact/', include('contacts.urls', namespace='contact')),
 	url(r'^article/', include('posts.urls', namespace='post')),
+	url(r'^section/', include('posts.urls_categories', namespace='cate')),
 	url(r'^video/', include('videos.urls', namespace='video')),
 	url(r'^review/', include('reviews.urls', namespace='review')),
 	url(r'^accounts/', include('allauth.urls')),
 	url(r'^profile/', include('users.urls', namespace='profile')),
+
 
 ]   
 

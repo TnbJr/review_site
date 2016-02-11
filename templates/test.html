@@ -1,0 +1,759 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+
+<style>
+{% block style %}
+body{
+background: url('{% static "img/crumble-honey.jpg" %}') no-repeat center center fixed;
+}
+{% endblock %}
+</style>
+
+
+{% block carousel %}
+   <!-- Carousel
+    ================================================== -->
+     
+<div id="myCarousel" class="carousel slide"  data-ride="carousel" >
+<!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+      <li data-target="#myCarousel" data-slide-to="4"></li>
+    </ol>
+<div class="col-sm-8"> 
+    <div class="carousel-inner" role="listbox" >
+      <div class="item active">
+      <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide"/>
+      <div class="container">
+          <div class="carousel-caption">
+            <h1>Example headline.</h1>
+            <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Another example headline.</h1>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+            </div>
+          </div>
+      </div>
+      <div class="item">
+        <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+
+          <div class="carousel-caption">
+            <h1>One more for good measure.</h1>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+          </div> 
+          </div> 
+    </div> <!-- /.carousel-inner -->
+
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+    </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+        </a>
+
+</div>
+</div><!-- /.carousel -->
+{% endblock %}
+
+
+
+{% block content %}
+<div class="all-content" style="
+border-top: 6px solid #bb9944;
+">
+  <div class="main">
+    <div class="row main-row">
+      <div class="content col-sm-8" style="
+    display: inline-block;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    ">
+      <div class="lr-row row">
+        <div class ="lr-col col-sm-12" style="">
+        <div class ="left-col col-sm-6" style="
+        float: left;
+        ">
+          <div class="lr-features" style="border-right: 2px dashed #bb9944;
+          padding-right: 20px;
+          ">
+           <div class="left" style="
+           ">
+            <div class="item">
+             <div class="image-wrapper" style="
+             display:block; 
+             position: relative;">
+              <a href="/read/open-weed-bar-oregon-wedding-huge-hit">
+               <div class="article-type" style="padding-bottom: 10px;
+               ">
+                Tutorials
+               </div>
+                <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="300" height="200">
+              </a>
+             </div>
+             <h3 class="headline">
+              <a href="/read/open-weed-bar-oregon-wedding-huge-hit">
+               Open Weed Bar at Oregon Wedding is a Huge Hit
+              </a>
+             </h3>
+             <div class="byline">
+              Fri Aug 28, 2015
+             </div>
+            </div>
+            <div class="item" style="
+            border-top: 1px solid #adadad;">
+             <h3 class="headline">
+              <a href="/read/everything-you-ever-wanted-know-about-marijuana-and-taxes">
+               Everything You Ever Wanted To Know About Marijuana and Taxes
+              </a>
+             </h3>
+             <div class="byline">
+              Fri Aug 28, 2015
+             </div>
+            </div>
+            <div class="item" style="    border-top: 1px solid #adadad;">
+             <h3 class="headline">
+              <a href="/read/radical-rant-even-tobacco-smoke-free-bars-are-ridiculous-abridgments-freedom">
+               Radical Rant: Even Tobacco Smoke-Free Bars Are Ridiculous Abridgments of Freedom
+              </a>
+             </h3>
+             <div class="byline">
+              Fri Aug 28, 2015
+              </div>
+             </div>
+            </div>
+           </div>
+        </div>
+
+
+      <div class ="right-col col-sm-6">
+        <div class="lr-features" style="">
+         <div class="right" style="
+        ">
+          <div class="item">
+           <div class="image-wrapper">
+            <a href="/read/open-weed-bar-oregon-wedding-huge-hit">
+              <div class="article-type" style="padding-bottom: 10px;">
+                Reviews
+               </div>
+             <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="300" height="200">
+            </a>
+           </div>
+           <h3 class="headline">
+            <a href="/read/open-weed-bar-oregon-wedding-huge-hit">
+             Open Weed Bar at Oregon Wedding is a Huge Hit
+            </a>
+           </h3>
+           <div class="byline">
+            Fri Aug 28, 2015
+           </div>
+          </div>
+          <div class="item" style="
+          border-top: 1px solid #adadad;">
+           <h3 class="headline">
+            <a href="/read/everything-you-ever-wanted-know-about-marijuana-and-taxes">
+             Everything You Ever Wanted To Know About Marijuana and Taxes
+            </a>
+           </h3>
+           <div class="byline">
+            Fri Aug 28, 2015
+           </div>
+          </div>
+          <div class="item" style="
+          border-top: 1px solid #adadad;">
+           <h3 class="headline">
+            <a href="/read/radical-rant-even-tobacco-smoke-free-bars-are-ridiculous-abridgments-freedom">
+             Radical Rant: Even Tobacco Smoke-Free Bars Are Ridiculous Abridgments of Freedom
+            </a>
+           </h3>
+           <div class="byline">
+            Fri Aug 28, 2015
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+
+
+
+<div class="row video-feature">
+  <div class="col-sm-12 video">
+    <h3 class="title valign-baseline xl" style="font-size:36px;
+     border-bottom: 1px solid #bb9944">
+     Video Feature
+    </h3>
+    <div class="video-feature" style="    
+        background: 0 0;
+        border-bottom: none;
+        padding: 0 20px;
+        display: inline-block;
+        ">
+     <a href="/read/us-sen-elizabeth-warren-open-legalizing-recreational-marijuana" style="    display: inline-block;
+          position: relative;">
+      <img class="hero" height="400" src="http://assets.hightimes.com/styles/large/s3/ElizabethWarren-Marijuana.jpg?itok=gZKDRedr" width="640"/>
+     </a>
+     <h3 class="headline" style="
+      float: left;
+      width: 83%;">
+      <a href="/read/us-sen-elizabeth-warren-open-legalizing-recreational-marijuana">
+       US Sen. Elizabeth Warren Is 'Open' To Legalizing Recreational Marijuana
+      </a>
+     </h3>
+     <div class="byline" style="    
+    float: left;
+    font-size: 10px;
+    font-weight: 700;
+    padding-top: 8px;
+    text-transform: uppercase;
+    width: 50%;">
+      Thu Sep 3, 2015
+     </div>
+     <p class="description" style="
+    clear: both;
+    padding: 10px 0 15px;">
+      U.S. senator and democratic darling Elizabeth Warren has changed her stance on marijuana legalization. According to Boston.com, she told Joshua Miller of The Boston Globe on Wednesday that she is now open to ballot questions seeking to legalize pot.
+     </p>
+<div class="share-button" style="">
+     <a href="https://www.facebook.com/sharer/sharer.php?u=http://Easydabble.com/" target="_blank">
+          <i class="fa fa-facebook-square fa-3x" style="color:#3b5998; 
+   "></i>
+          </a>
+
+          <a href="https://twitter.com/home?status=Learn%20To%20Dab...%20%23Dabs" target="_blank">
+
+           <i class="fa fa-twitter-square fa-3x" style="color:#4099FF"></i>
+    </a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://easydabble.com/&title=Learn%20To%20Dab...%20&summary=%E2%80%9CWhen%20you%20smoke%20herb%2C%20it%20reveals%20you%20to%20yourself.%E2%80%9D&source=http://easydabble.com/" target="_blank">
+            <i class="fa fa-linkedin-square fa-3x" style="color:#007bb6"></i>
+            </a>
+            <a href="http://www.reddit.com/submit?url=http://easydabble.com/&title=Learn%20To%20Dab...%20" target="_blank">
+             <i class="fa fa-reddit-square fa-3x" style="color:#900020"></i>
+             </a>
+             <a href='https://plus.google.com/share?url=http://easydabble.com/' target="_blank">
+              <i class="fa fa-google-plus-square fa-3x" style="color:#D34836"></i>
+              </a>
+              </div>
+    </div>
+    <!-- .video-feature -->
+        </div>
+      </div>
+
+
+
+<div class="lr-row row">
+  <div class ="lr-col col-sm-12" style="">
+  <div class ="left-col col-sm-6" style="
+      float: left; 
+      ">
+  <div class="lr-features" style="
+      border-right: 2px dashed #bb9944;
+      padding-right: 20px;
+      ">
+   <div class="left" style="">
+    <div class="item">
+     <div class="image-wrapper" style="
+       display:block; 
+       position: relative;">
+        <div class="article-type" style="padding-bottom: 10px;">
+                Entertainment
+               </div>
+      <a href="/read/open-weed-bar-oregon-wedding-huge-hit">
+       <!-- <div class="article-type">
+        lounge
+       </div> -->
+        <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="300" height="200">
+      </a>
+     </div>
+     <h3 class="headline">
+      <a href="/read/open-weed-bar-oregon-wedding-huge-hit">
+       Open Weed Bar at Oregon Wedding is a Huge Hit
+      </a>
+     </h3>
+     <div class="byline">
+      Fri Aug 28, 2015
+     </div>
+    </div>
+    <div class="item" style=" border-top: 1px solid #adadad;">
+     <h3 class="headline">
+      <a href="/read/everything-you-ever-wanted-know-about-marijuana-and-taxes">
+       Everything You Ever Wanted To Know About Marijuana and Taxes
+      </a>
+     </h3>
+     <div class="byline">
+      Fri Aug 28, 2015
+     </div>
+    </div>
+    <div class="item" style="border-top: 1px solid #adadad;">
+     <h3 class="headline">
+      <a href="/read/radical-rant-even-tobacco-smoke-free-bars-are-ridiculous-abridgments-freedom">
+       Radical Rant: Even Tobacco Smoke-Free Bars Are Ridiculous Abridgments of Freedom
+      </a>
+     </h3>
+     <div class="byline">
+      Fri Aug 28, 2015
+     </div>
+    </div>
+   </div>
+   </div>
+
+    </div>
+<div class ="right-col col-sm-6">
+  <div class="lr-features" style=" margin-left: 0;">
+   <div class="right" style="">
+    <div class="item">
+     <div class="image-wrapper">
+       <div class="article-type" style="padding-bottom: 10px;">
+                News
+               </div>
+      <a href="/read/open-weed-bar-oregon-wedding-huge-hit">
+      <!--  <div class="article-type">
+        lounge
+       </div> -->
+       <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="300" height="200">
+      </a>
+     </div>
+     <h3 class="headline">
+      <a href="/read/open-weed-bar-oregon-wedding-huge-hit">
+       Open Weed Bar at Oregon Wedding is a Huge Hit
+      </a>
+     </h3>
+     <div class="byline">
+      Fri Aug 28, 2015
+     </div>
+    </div>
+    <div class="item" style="    border-top: 1px solid #adadad;">
+     <h3 class="headline">
+      <a href="/read/everything-you-ever-wanted-know-about-marijuana-and-taxes">
+       Everything You Ever Wanted To Know About Marijuana and Taxes
+      </a>
+     </h3>
+     <div class="byline">
+      Fri Aug 28, 2015
+     </div>
+    </div>
+    <div class="item" style="    border-top: 1px solid #adadad;">
+     <h3 class="headline">
+      <a href="/read/radical-rant-even-tobacco-smoke-free-bars-are-ridiculous-abridgments-freedom">
+       Radical Rant: Even Tobacco Smoke-Free Bars Are Ridiculous Abridgments of Freedom
+      </a>
+     </h3>
+     <div class="byline">
+      Fri Aug 28, 2015
+     </div>
+    </div>
+   </div>
+   </div>
+    </div>
+    </div>
+    </div>
+
+
+<div class="row galleries-feature" style="padding-left: 20px;">
+<div class="widget-header">
+   <h3 style="border-bottom: 1px solid #bb9944; font-size:36px;">
+    Galleries
+   </h3>
+  </div>
+  <div class="widget" style="">
+   <div class="widget-item" style="
+        float: left;
+        font: 400 16px/1.4 stag-bold,times,georgia,serif;
+        margin-right: 10px;
+        width: 200px; ">
+    <a href="/view/2015-michigan-medical-cannabis-cup-top-5-edibles-and-topicals">
+     <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="200" height="133">
+     2015 Michigan Medical Cannabis Cup: Top 5 Edibles and Topicals
+    </a>
+   </div>
+   <div class="widget-item" style="
+      float: left;
+      font: 400 16px/1.4 stag-bold,times,georgia,serif;
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 200px;">
+    <a href="/view/2015-michigan-medical-cannabis-cup-top-10-hybrid-concetrates">
+     <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="200" height="133">
+     2015 Michigan Medical Cannabis Cup: Top 10 Hybrid Concetrates
+    </a>
+   </div>
+   <div class="widget-item" style="
+        float: left;
+        font: 400 16px/1.4 stag-bold,times,georgia,serif;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 200px; padding-bottom:50px;">
+    <a href="/view/2015-michigan-medical-cannabis-cup-top-10-indica-concentrates">
+     <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="200" height="133">
+     2015 Michigan Medical Cannabis Cup: Top 10 Indica Concentrates
+    </a>
+   </div>
+  </div>
+  </div>
+
+
+
+
+
+
+<div class="row articles-feature" style="padding-left:20px;">
+      <h3 class="title valign-baseline xl" style="font-size:36px;">
+     Recent Articles
+    </h3>
+<div class="summary even" style=" 
+    display: block;
+    min-height: 187px;
+    border-top: 1px solid gray;
+    display: inline-block;
+    padding: 15px 0 5px;">
+     <div class="image-wrapper" style="float: right;
+       margin: 5px 0 10px 30px; 
+       display: inline-block;
+      position: relative;">
+      <a href="/read/reefer-rambos-indiana-enlists-military-forces-uproot-cannabis-plants">
+       <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="167">
+      </a>
+     </div>
+     <h3 class="headline">
+      <a href="/read/reefer-rambos-indiana-enlists-military-forces-uproot-cannabis-plants">
+       Reefer Rambos: Indiana Enlists Military Forces to Uproot Cannabis Plants
+      </a>
+     </h3>
+     <div class="byline">
+      Thu Sep 3, 2015
+     </div>
+     <p class="description">
+      While parts of the United States are now generating millions of tax dollars from the sale of marijuana to put toward the betterment of their communities, Indiana continues to waste valuable resources to aggressively eradicate pot plants from Hoosier soil—all at the ...
+     </p>
+    </div>
+
+
+
+    <div class="summary odd" style="
+    display: block;
+    min-height: 187px;
+    border-top: 1px solid gray;
+    display: inline-block;
+    padding: 15px 0 5px;">
+     <div class="image-wrapper" style="
+     float: left;
+      margin: 5px 30px 10px 0;
+      display: inline-block;
+      position: relative;">
+      <a href="/read/vermont’s-perfect-storm-retail-cannabis-market">
+       <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="167">
+      </a>
+     </div>
+     <h3 class="headline">
+      <a href="/read/vermont’s-perfect-storm-retail-cannabis-market">
+       Vermont’s Perfect Storm to a Retail Cannabis Market
+      </a>
+     </h3>
+     <div class="byline">
+      Wed Sep 2, 2015
+     </div>
+     <p class="description">
+      While cannabis advocates push to raise vast campaign funding to pass initiatives to legalize the leaf in their neck of the woods, Vermont is poised to become the first state in the nation to take this leap by way of its legislature.
+     </p>
+    </div>
+    <div class="summary even" style=" 
+    display: block;
+    min-height: 187px;
+    border-top: 1px solid gray;
+    display: inline-block;
+    padding: 15px 0 5px;">
+     <div class="image-wrapper" style="
+     float: right;
+      margin: 5px 0 10px 30px;
+      display: inline-block;
+      position: relative;" >
+      <a href="/read/why-were-lab-tested-mold-results-dismissed-michigan-cannabis-cup">
+       <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="167">
+      </a>
+     </div>
+     <h3 class="headline">
+      <a href="/read/why-were-lab-tested-mold-results-dismissed-michigan-cannabis-cup">
+       Why Were Lab-Tested Mold Results Dismissed at the Michigan Cannabis Cup?
+      </a>
+     </h3>
+     <div class="byline">
+      Wed Sep 2, 2015
+     </div>
+     <p class="description">
+      In our Cannabis Cup competitions, HIGH TIMES utilizes the highest standards of any cannabis competition in the world to determine the best cannabis products. These standards include using two separate, independent labs, as well as expert judges from the cannabis industry....
+     </p>
+    </div>
+<div class="summary odd" style=" 
+    display: block;
+    min-height: 187px;
+    border-top: 1px solid gray;
+    display: inline-block;
+    padding: 15px 0 5px;">
+     <div class="image-wrapper" style="float: left;
+        margin: 5px 30px 10px 0;    display: inline-block;
+    position: relative;">
+      <a href="/read/vermont’s-perfect-storm-retail-cannabis-market">
+       <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="167">
+      </a>
+     </div>
+     <h3 class="headline">
+      <a href="/read/vermont’s-perfect-storm-retail-cannabis-market">
+       Vermont’s Perfect Storm to a Retail Cannabis Market
+      </a>
+     </h3>
+     <div class="byline">
+      Wed Sep 2, 2015
+     </div>
+     <p class="description">
+      While cannabis advocates push to raise vast campaign funding to pass initiatives to legalize the leaf in their neck of the woods, Vermont is poised to become the first state in the nation to take this leap by way of its legislature.
+     </p>
+    </div>
+
+
+    <div class="summary odd" style=" 
+    display: block;
+    min-height: 187px; 
+    border-top: 1px solid gray;
+    padding: 15px 0 5px;">
+    <div class="image-wrapper" style="
+    float: right;
+    margin: 5px 0 10px 30px;
+    display: inline-block;
+    position: relative;">
+      <a href="/read/high-times-withdraws-its-application-hold-2015-oregon-cannabis-cup-milwaukie-or">
+       <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="167">
+      </a>
+     </div>
+     <h3 class="headline">
+      <a href="/read/high-times-withdraws-its-application-hold-2015-oregon-cannabis-cup-milwaukie-or">
+       HIGH TIMES Withdraws Its Application To Hold 2015 Oregon Cannabis Cup In Milwaukie, OR
+      </a>
+     </h3>
+     <div class="byline">
+      Tue Sep 1, 2015
+     </div>
+     <p class="description">
+      As of 5 p.m. PST on August 31, HIGH TIMES withdrew its Temporary Event Application to hold its 2015 Oregon Cannabis Cup in the City of Milwaukie, Oregon.
+     </p>
+    </div>
+
+
+<div class="summary odd" style=" 
+    display: block;
+    min-height: 187px;
+    border-top: 1px solid gray;
+    display: inline-block;
+    padding: 15px 0 5px;">
+     <div class="image-wrapper" style="
+     float: left;
+      margin: 5px 30px 10px 0;    
+      display: inline-block;
+      position: relative;">
+      <a href="/read/vermont’s-perfect-storm-retail-cannabis-market">
+       <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="167">
+      </a>
+     </div>
+     <h3 class="headline">
+      <a href="/read/vermont’s-perfect-storm-retail-cannabis-market">
+       Vermont’s Perfect Storm to a Retail Cannabis Market
+      </a>
+     </h3>
+     <div class="byline">
+      Wed Sep 2, 2015
+     </div>
+     <p class="description">
+      While cannabis advocates push to raise vast campaign funding to pass initiatives to legalize the leaf in their neck of the woods, Vermont is poised to become the first state in the nation to take this leap by way of its legislature.
+     </p>
+    </div>
+    <div class="summary even" style=" 
+    display: block;
+    min-height: 187px;
+    border-top: 1px solid gray;
+    display: inline-block;
+    padding: 15px 0 5px;">
+     <div class="image-wrapper" style="
+     float: right;
+       margin: 5px 0 10px 30px;
+      display: inline-block;
+    position: relative;" >
+      <a href="/read/why-were-lab-tested-mold-results-dismissed-michigan-cannabis-cup">
+       <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="167">
+      </a>
+     </div>
+     <h3 class="headline">
+      <a href="/read/why-were-lab-tested-mold-results-dismissed-michigan-cannabis-cup">
+       Why Were Lab-Tested Mold Results Dismissed at the Michigan Cannabis Cup?
+      </a>
+     </h3>
+     <div class="byline">
+      Wed Sep 2, 2015
+     </div>
+     <p class="description">
+      In our Cannabis Cup competitions, HIGH TIMES utilizes the highest standards of any cannabis competition in the world to determine the best cannabis products. These standards include using two separate, independent labs, as well as expert judges from the cannabis industry....
+     </p>
+    </div>
+<div class="summary odd" style=" display: block;
+    min-height: 187px;
+    border-top: 1px solid gray;
+    display: inline-block;
+    padding: 15px 0 5px;">
+     <div class="image-wrapper" style="
+     float: left;
+      margin: 5px 30px 10px 0;
+      display: inline-block;
+    position: relative;">
+      <a href="/read/vermont’s-perfect-storm-retail-cannabis-market">
+       <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="167">
+      </a>
+     </div>
+     <h3 class="headline">
+      <a href="/read/vermont’s-perfect-storm-retail-cannabis-market">
+       Vermont’s Perfect Storm to a Retail Cannabis Market
+      </a>
+     </h3>
+     <div class="byline">
+      Wed Sep 2, 2015
+     </div>
+     <p class="description">
+      While cannabis advocates push to raise vast campaign funding to pass initiatives to legalize the leaf in their neck of the woods, Vermont is poised to become the first state in the nation to take this leap by way of its legislature.
+     </p>
+    </div>
+
+
+    <div class="summary odd" style="    
+    display: block;
+    min-height: 187px; 
+     border-top: 1px solid gray;
+    padding: 15px 0 5px;">
+     <div class="image-wrapper" style="
+    float: right;
+    margin: 5px 0 10px 30px;
+    display: inline-block;
+    position: relative;">
+      <a href="/read/high-times-withdraws-its-application-hold-2015-oregon-cannabis-cup-milwaukie-or">
+       <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="167">
+      </a>
+     </div>
+     <h3 class="headline">
+      <a href="/read/high-times-withdraws-its-application-hold-2015-oregon-cannabis-cup-milwaukie-or">
+       HIGH TIMES Withdraws Its Application To Hold 2015 Oregon Cannabis Cup In Milwaukie, OR
+      </a>
+     </h3>
+     <div class="byline">
+      Tue Sep 1, 2015
+     </div>
+     <p class="description">
+      As of 5 p.m. PST on August 31, HIGH TIMES withdrew its Temporary Event Application to hold its 2015 Oregon Cannabis Cup in the City of Milwaukie, Oregon.
+     </p>
+    </div>
+<div class="summary odd" style=" 
+    display: block;
+    min-height: 187px;
+    border-top: 1px solid gray;
+    display: inline-block;
+    padding: 15px 0 5px;">
+     <div class="image-wrapper" style="
+     float: left;
+      margin: 5px 30px 10px 0; 
+    display: inline-block;
+    position: relative;">
+      <a href="/read/vermont’s-perfect-storm-retail-cannabis-market">
+       <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="167">
+      </a>
+     </div>
+     <h3 class="headline">
+      <a href="/read/vermont’s-perfect-storm-retail-cannabis-market">
+       Vermont’s Perfect Storm to a Retail Cannabis Market
+      </a>
+     </h3>
+     <div class="byline">
+      Wed Sep 2, 2015
+     </div>
+     <p class="description">
+      While cannabis advocates push to raise vast campaign funding to pass initiatives to legalize the leaf in their neck of the woods, Vermont is poised to become the first state in the nation to take this leap by way of its legislature.
+     </p>
+    </div>
+  </div>
+
+
+    </div>
+    
+          
+
+
+
+
+
+
+          <!-- SIDEBAR -->
+        <div class="col-sm-4 sidebar-main" style="
+        float: right;
+        padding: 20px; 
+        border-left: 4px dashed #bb9944;">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">March 2014</a></li>
+              <li><a href="#">February 2014</a></li>
+              <li><a href="#">January 2014</a></li>
+              <li><a href="#">December 2013</a></li>
+              <li><a href="#">November 2013</a></li>
+              <li><a href="#">October 2013</a></li>
+              <li><a href="#">September 2013</a></li>
+              <li><a href="#">August 2013</a></li>
+              <li><a href="#">July 2013</a></li>
+              <li><a href="#">June 2013</a></li>
+              <li><a href="#">May 2013</a></li>
+              <li><a href="#">April 2013</a></li>
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+            </ol>
+          </div><div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+    </div><!-- /.main -->
+  </div><!-- /.allcontent -->
+  {% endblock %}
+

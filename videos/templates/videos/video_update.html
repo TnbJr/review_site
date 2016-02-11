@@ -12,6 +12,6 @@
 	    {{ form|crispy }}
 		<input type="submit" value="Update Content">
 		</form>
-		<button><a href="">Delete</a></button>	
+		<button><a href="{% url 'video:delete' pk=pk %}">Delete</a></button>	
 	{% endif %}
 {% endblock %}

@@ -4,12 +4,11 @@
 
 {% block content %}
 {% include "navbar.html" %}
-	<h1>Omg</h1>
+	<h1>{{ title }}</h1>
 {% for item in queryset %}
-	
+	<!-- grabs video url from database -->
 	{% video item.video as my_video %}
-   <!-- <p>URL: {{ my_video.url }}</p>  -->
-    <!-- <p>{{ my_video.description }}</p> -->
+
     <h4><a href="{{ item.get_absolute_url }}">{{ item.title|title }}</a></h4>
     <img src="{{ my_video.thumbnail }}" width=250 height=167 class="img-rounded">
     <p>{{ item.description }}</p> 
