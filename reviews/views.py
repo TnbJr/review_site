@@ -8,19 +8,24 @@ from .forms import ProductReviewForm, UserReviewForm
 
 
 class ReviewIndexView(View):
+	template = "reviews/index.html"
 	def get(self, request):
 		queryset = ProductReview.objects.all()
 		context={
-			'query_list': queryset
+			"query_list": queryset
 		}
-		return render(request, "reviews/index.html", context)
+		return render(request, self.template, context)
 
 class ReviewCreateView(View):
+	template = "reviews/review_create.html"
+	form = ProductReviewForm
+	title = "Create A New Review"
 	def get(self, request):
 		context={
-			'form': ProductReviewForm()
+			"form": self.form(),
+			"title": self.title,
 		}
-		return render(request, "reviews/review_create.html", context)
+		return render(request, self.template, context)
 
 	def post(self, request):
 		form = ProductReviewForm(request.POST or None)
@@ -28,19 +33,103 @@ class ReviewCreateView(View):
 			instance = form.save()
 			return redirect('review:index')
 		context={
-			'form': form
+			"form": self.form(request.POST or None),
+			"title": self.title
 		}
-		return render(request, "reviews/index.html", context)
+		return render(request, self.template, context)
 
 class ReviewDetailView(View):
+	template = "reviews/review_detail.html"
+	form = UserReviewForm
 	def get(self, request, pk):
 		instance = get_object_or_404(ProductReview, pk=pk)
-		omg = UserReview.objects.filter(product_review=pk).aggregate(Avg('rating'))
-		form = UserReviewForm()
+		review_average = UserReview.objects.filter(product_review=pk).aggregate(Avg('rating'))
+		user_id = request.user.id
 		context = {
 			"title": instance.name,
 			"instance": instance,
-			"form": form,
-			"omg": omg["rating__avg"]
+			"form": self.form(initial={'user': request.user}),
+			"average": review_average["rating__avg"],
+			"pk": pk,
+			"user_id": user_id
 		}
-		return render(request, "reviews/review_detail.html", context)
+		return render(request, self.template, context)
+
+	def post(self, request, pk):
+		instance = get_object_or_404(ProductReview, pk=pk)
+		form = self.form(request.POST or None)
+		print(instance)
+		print(form)
+		if form.is_valid():
+			form = form.save(commit=False)
+			form.user = request.user
+			form.product_review = instance
+			form.save()
+			return redirect("review:detail", pk=pk)
+		context = {
+			"title": instance.name,
+			"instance": instance,
+			"form": self.form(initial={'user': request.user}),
+			"average": review_average["rating__avg"],
+			"pk": pk,
+			"user_id": user_id
+		}
+		return render(request, self.template, context)
+
+
+class ReviewUpdateView(View):
+	template = "reviews/review_update.html"
+	form = ProductReviewForm
+	title = "Update Content"
+	def get(self, request, pk):
+		instance = get_object_or_404(ProductReview, pk=pk)
+		context = {
+			"form": self.form(None, instance=instance),
+			"title": self.title,
+			"pk": pk
+		}
+		return render(request, self.template, context)
+
+	def post(self, request, pk):
+		instance = get_object_or_404(ProductReview, pk=pk)
+		form = self.form(request.POST or None, instance=instance)
+		if form.is_valid():
+			form = form.save(commit=False)
+			form.save()
+			return redirect("review:detail", pk=pk)
+		context = {
+			"form": self.form(request.POST or None),
+			"title": self.title,
+			"pk": pk
+		}
+		return render(request, self.template, context)
+
+class ReviewDeleteView(View):
+	title = "Delete Review"
+	template = "reviews/review_delete.html"
+	def get(self, request, pk):
+		instance = get_object_or_404(ProductReview, pk=pk)
+		context = {
+			"title": self.title,
+			"review": instance.name,
+			"pk": pk
+		}
+		return render(request, self.template, context)
+
+	def post(self, request, pk):
+		instance = get_object_or_404(ProductReview, pk=pk)
+		instance.delete()
+		return redirect('review:index')
+
+# class CommentCreateView(View):
+# 	form = UserReviewForm
+# 	def post(self, request, pk):
+# 		instance = get_object_or_404(ProductReview, pk=pk)
+# 		form = self.form(request.POST or None, initial={'user': request.user})
+# 		if form.is_valid():
+# 			form = form.save(commit=False)
+# 			form.save()
+# 			return("review:detail", pk=pk)
+
+
+

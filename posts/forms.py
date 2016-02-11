@@ -8,5 +8,6 @@ class ContentPostForm(forms.ModelForm):
 				'image',
 				 'content',
 				 'draft',
-				 'published'
-				 ]
+				 'published',
+				 'categories'
+			 ]

@@ -23,6 +23,10 @@
 							<p>{{ obj.content|truncatewords:20 }}</p>
 							{{ obj.id }} 
 							<a href="{% url 'post:update' slug=obj.slug %}">Update</a>
+							
+		<div class="caption">
+        	{% if obj.draft %}<h3>Staff only: Draft</h3>{% endif %} {% if obj.published > today %}<h3>Staff Only: Future Post</h3>{% endif %}
+      	</div>
 						
 					</div>
 				</div>
@@ -43,8 +47,7 @@
         {% if queryset_list.has_next %}
             <a href="?page={{ queryset_list.next_page_number }}">next</a>
         {% endif %}
-    </span>
+    </span> 
 </div>
-
     </div>
 {% endblock %}

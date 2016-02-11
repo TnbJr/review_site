@@ -6,26 +6,36 @@
 {% block content %}
 	<h1>{{ title }}</h1>
 	<h2>{{ instance.published }}</h2>
+	<h5>{{ instance.userreview_set.count }} reviews ({{ average|floatformat }} out of 5 average rating)</h5>
 
-<h1></h1>
-
-<h5>{{ instance.userreview_set.count }} reviews ({{ omg|floatformat }} out of 5 average rating)</h5>
-
-	{% if instance.userreview_set.all %}
-		{% for review in instance.userreview_set.all %}
-	<h4>{{ review.user_name }}</h4>
-	<p>{{ review.comment }}</p>
-	<h6>dou yyou agree or have a diff point of view leave your personal review below</h6>
-
-	<em>{{ review.rating }}</em>
-
-		{% endfor %}
+{% if instance.userreview_set.all %}
+	{% for review in instance.userreview_set.all %}	
+		<h4>{{ review.user }}</h4>
+		<p>{{ review.comment }}</p>
+		<em> User rating {{ review.rating }}</em>
+			{% if request.user.id == review.user.id %}
+		 		<h6>it works</h6>	
+		 	{% endif %}
+		<h4>Leave your review below</h4>
+	{% endfor %}
 	{% else %}
-	<p>No reviews for this product yet</p>
-	{% endif %}
-	
+		<p>No reviews for this product yet</p>
+{% endif %}
+
+{% if user.is_authenticated %}
 	{% if form %}
-		{{ form|crispy }}
+		<form name="review-user" action="{% url 'review:detail' pk=pk %}" method="POST">
+		    {% csrf_token %}
+		    {{ form|crispy }}
+			<input type="submit" value="Submit Review">
+		</form>
 	{% endif %}
+		{% else%}
+		<a href="{% url 'account_login' %}">han</a>
+{% endif %}
+
+		
+
+	
 
 {% endblock %}

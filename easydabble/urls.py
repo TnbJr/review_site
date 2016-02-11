@@ -21,11 +21,11 @@ from django.contrib import admin
 urlpatterns = [
 	url(r'^admin/', admin.site.urls),
 	url(r'^', include('sitemaps.urls', namespace='sitemaps')),
-	url(r'^contact', include('contacts.urls', namespace='contact')),
+	url(r'^contact/', include('contacts.urls', namespace='contact')),
 	url(r'^article/', include('posts.urls', namespace='post')),
 	url(r'^video/', include('videos.urls', namespace='video')),
 	url(r'^review/', include('reviews.urls', namespace='review')),
-	url(r'^accounts/', include('allauth.urls', namespace='allauth')),
+	url(r'^accounts/', include('allauth.urls')),
 	url(r'^profile/', include('users.urls', namespace='profile')),
 
 ]   
