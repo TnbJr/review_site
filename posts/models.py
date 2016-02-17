@@ -17,7 +17,7 @@ class ContentPost(models.Model):
 	width_field = models.IntegerField(default=0)
 	content = models.TextField()
 	draft = models.BooleanField(default=False)
-	published = models.DateField(auto_now=False, auto_now_add=False)
+	published = models.DateTimeField(auto_now=False, auto_now_add=False)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	categories = models.ManyToManyField('Category') 

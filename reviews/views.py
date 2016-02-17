@@ -46,7 +46,7 @@ class ReviewDetailView(View):
 		review_average = UserReview.objects.filter(product_review=pk).aggregate(Avg('rating'))
 		user_id = request.user.id
 		context = {
-			"title": instance.name,
+			"title": instance.title,
 			"instance": instance,
 			"form": self.form(initial={'user': request.user}),
 			"average": review_average["rating__avg"],
@@ -67,7 +67,7 @@ class ReviewDetailView(View):
 			form.save()
 			return redirect("review:detail", pk=pk)
 		context = {
-			"title": instance.name,
+			"title": instance.title,
 			"instance": instance,
 			"form": self.form(initial={'user': request.user}),
 			"average": review_average["rating__avg"],

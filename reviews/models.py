@@ -9,8 +9,8 @@ class ProductReview(models.Model):
 		("Handheld Vaporizer", "Hand"),
 		("Other", "Other"),
 		)
-	name = models.CharField(max_length=150)
-	review = models.TextField()
+	title = models.CharField(max_length=150)
+	content = models.TextField()
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now = True)
 	draft = models.BooleanField(default=False)
@@ -24,7 +24,7 @@ class ProductReview(models.Model):
 		return reverse("review:detail", kwargs={"pk": self.id})
 
 	def __str__(self):
-		return self.name 
+		return self.title 
 
 class UserReview(models.Model):
 	RATING_CHOICES = (

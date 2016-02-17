@@ -4,6 +4,7 @@
 
 
 {% block content %}
+{% include "navbar.html" %}
 	<h1>{{ title }}</h1>
 	<h2>{{ instance.published }}</h2>
 	<h5>{{ instance.userreview_set.count }} reviews ({{ average|floatformat }} out of 5 average rating)</h5>
@@ -14,7 +15,7 @@
 		<p>{{ review.comment }}</p>
 		<em> User rating {{ review.rating }}</em>
 			{% if request.user.id == review.user.id %}
-		 		<h6>it works</h6>	
+		 		<h3>this is your review</h3>	
 		 	{% endif %}
 		<h4>Leave your review below</h4>
 	{% endfor %}

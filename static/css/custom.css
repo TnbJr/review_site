@@ -77,4 +77,59 @@ p{
 
 }
 
+.xl-title{
+  font-size:36px;
+  border-bottom: 1px solid #bb9944;
 
+}
+
+.video-feauture{
+  background: 0 0;
+  border-bottom: none;
+  padding: 0 20px;
+  display: inline-block;
+}
+
+.video-image{
+  height: 400px;
+  width: 640px;
+}
+
+.headline{
+  float: left;
+  width: 83%;
+}
+
+.byline{
+  float: left;
+  font-size: 10px;
+  font-weight: 700;
+  padding-top: 8px;
+  text-transform: uppercase;
+  width: 50%;
+}
+
+.description{
+ clear: both;
+  padding: 10px 0 15px; 
+}
+
+hr{
+  color: red;
+  height: 1px;
+
+}
+
+.endless_container{
+  border: 1px solid;
+  border-radius: 6px;
+  text-align: center;
+}
+
+p {
+  font-family: 'Lato';
+}
+
+h1, h2,h3,h4,h5,h6{
+  font-family: 'Lustria';
+}

@@ -59,7 +59,7 @@ class PostIndexView(View):
 class PostDetailView(View):
 	def get(self, request, slug=None):
 		instance = get_object_or_404(ContentPost, slug=slug)
-		if instance.published > timezone.now().date():
+		if instance.published > timezone.now():
 			if not request.user.is_staff or not request.user.is_superuser:
 				raise Http404
 		share_string = quote_plus(instance.title)

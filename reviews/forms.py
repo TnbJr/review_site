@@ -4,8 +4,8 @@ from .models import ProductReview, UserReview
 class ProductReviewForm(forms.ModelForm):
 	class Meta:
 		model = ProductReview
-		fields = [ 'name',
-					'review',
+		fields = [ 'title',
+					'content',
 					'published',
 					'affiliate_link',
 					'draft'

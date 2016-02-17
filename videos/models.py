@@ -7,9 +7,9 @@ from django.db.models.signals import pre_save
 class Video(models.Model):
 	title = models.CharField(max_length=255, unique=True)
 	slug = models.SlugField(unique=True)
-	description = models.TextField()
+	content = models.TextField()
 	draft = models.BooleanField(default=False)
-	published = models.DateField(auto_now=False, auto_now_add=False)
+	published = models.DateTimeField(auto_now=False, auto_now_add=False)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	video = EmbedVideoField()
@@ -17,11 +17,12 @@ class Video(models.Model):
 	def __str__(self):
 		return self.title
 
-
 	def get_absolute_url(self):
 		return reverse("video:detail", kwargs={"pk": self.id})
 
 	def save(self, *args, **kwargs):
 		if not self.slug:
 			self.slug = slugify(self.title)
+			super(Video, self).save(*args, **kwargs) 
+		else:
 			super(Video, self).save(*args, **kwargs) 

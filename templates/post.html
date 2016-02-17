@@ -1,0 +1,35 @@
+ {% load embed_video_tags %}
+  {% load el_pagination_tags %}
+
+  {% paginate query %}
+      {% for obj in query %}
+
+        <div class="media">
+          <div class="media-left media-top">
+            <a href="{{ obj.get_absolute_url }}">
+              {% if obj.image %}
+                <img src="{{ obj.image.url }}" class="img-reponsive " width="375" height="250" />
+            </a>
+            <!-- Creates a thumbnail for video post -->
+              {% else%}
+                {% video obj.video as my_video %}
+                   <a href="{{ obj.get_absolute_url }}">
+                <img src="{{ my_video.thumbnail }}" class="img-reponsive" width="375" height="250" />
+            </a>
+                  {% endvideo %}
+                {% endif %}
+          </div>
+            <div class="media-body">
+                <h4>
+                  <a href="{{ obj.get_absolute_url }}">{{ obj.title|title }}</a>
+                </h4>
+                <p>{{ obj.content|truncatewords:20 }}</p>
+                {{ obj.id }}
+            </div>
+          </div>
+          <hr>
+          
+        {% endfor %}
+        {% show_pages %}
+       
+      

@@ -1,9 +1,17 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load embed_video_tags %}
+
+{% block content %}
+{% include "navbar.html" %}
+
 <h1>List</h1>
 
 {% for item in query_list %}
 <ul>
-	<li><a href="{{ item.get_absolute_url }}">{{ item.name|title }}</a></li>
-
+	<li><a href="{{ item.get_absolute_url }}">{{ item.title|title }}</a></li>
 </ul>
 
 {% endfor %}
+
+{% endblock content %}
