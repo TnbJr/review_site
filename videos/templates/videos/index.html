@@ -4,19 +4,53 @@
 
 {% block content %}
 {% include "navbar.html" %}
+<main class="container" id="video-index-container" style="margin-top: 100px;">
+<aside>
+	{% include 'sidebar.html' %}
+</aside>	
+<section class="col-md-8">
 	<h1>{{ title }}</h1>
 {% for item in queryset %}
+<div class="row featurette">
+    <div class="col-md-7 col-md-push-5">
+    <div class="review-category"><a href="">{{ item.categories }}</a></div>
+      <h2 class="featurette-heading review-heading" >
+      <a href="{{ item.get_absolute_url }}">
+      {{ item.title|title }}</h2></a>
+      <div class="review-meta text-muted">{{ item.created|date:" M  d Y" }}</div>
+      <p class="lead" >{{ item.content|truncatewords:20 }}</p>
+    </div>
+
+
 	<!-- grabs video url from database -->
 	{% video item.video as my_video %}
 
-    <h4><a href="{{ item.get_absolute_url }}">{{ item.title|title }}</a></h4>
+	<div class="col-md-5 col-md-pull-7">
+    <a href="{{ item.get_absolute_url }}">
     <img src="{{ my_video.thumbnail }}" width=250 height=167 class="img-rounded">
     <p>{{ item.description }}</p> 
     <a href="{% url 'video:update' pk=item.id %}">Update</a>
+    </a>
+    </div>
    <!--  {% video my_video 'small' %} -->
 
 	{% endvideo %}
-{% endfor %}
+	</div>
+	</div>
+	<hr>
+	{% endfor %}
+	
+
+	<div class="review-category"><a href="">{{ obj.categories }}</a></div>
+      <h2 class="featurette-heading review-heading" >
+      <a href="{{ obj.get_absolute_url }}">
+      {{ obj.title|title }}</h2></a>
+      <div class="review-meta text-muted">{{ obj.created|date:" M  d Y" }}</div>
+      <p class="lead" >{{ obj.content|truncatewords:20 }}</p>
+    </div>
+
+
+</section>
 
 
 {% endblock %}

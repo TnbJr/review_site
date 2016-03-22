@@ -5,17 +5,19 @@
 
 {% block content %}
 {% include "navbar.html" %}
+ <div class="container review-container ">
   <h1>{{ title }}</h1>
-
 	{% if form %}
-		<form name="review-update" action="{% url 'review:update' pk=pk %}" method="POST">
+		<form name="review-update" action="{% url 'review:update' slug=slug %}" method="POST">
 		    {% csrf_token %}
 		    {{ form|crispy }}
 			<input type="submit" value="Update Content">
 		</form>
 		<button>
-			<a href="{% url 'review:delete' pk=pk %}">Delete</a>
+			<a href="{% url 'review:delete' slug=slug %}">Delete</a>
 		</button>
+ 	
+ </div>
 		
 	{% endif %}
 {% endblock %}

@@ -4,11 +4,12 @@
 
 {% block content %}
 {% include "navbar.html" %}
+<main class="container video-crud-container">
   <h1>{{ title }}</h1>
 
 	<form name="video-delete" action="{% url 'video:delete' pk=pk %}" method="POST">
 	    {% csrf_token %}
 		<input type="submit" value="Delete Content">
 		</form>	
-	
+</main>
 {% endblock %}

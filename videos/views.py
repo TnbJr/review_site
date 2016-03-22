@@ -24,7 +24,8 @@ class VideoDetailView(View):
 		instance = get_object_or_404(Video, pk=pk)
 		context = {
 			"title": instance.title,
-			"instance": instance
+			"instance": instance,
+			"pk": instance.id
 		}
 		return render(request, self.template, context)
 

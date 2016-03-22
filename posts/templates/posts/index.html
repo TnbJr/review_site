@@ -5,35 +5,40 @@
 {% include "navbar.html" %}
 
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-6" >
-			  {% for obj in queryset_list %}
-			<div class="media">
-				<div class="media-left media-top">
-					<a href="{{ obj.get_absolute_url }}">
-						{% if obj.image %}
-				       <img src="{{ obj.image.url }}" class="img-reponsive thumbnail" width="250" height="167" />
-				      </a>
-				      {% endif %}
-				</div>
-					<div class="media-body">
-					
-							<h4><a href="{{ obj.get_absolute_url }}">{{ obj.title|title }}</a></h4>
-							<p>{{ obj.content|truncatewords:20 }}</p>
-							{{ obj.id }} 
-							<a href="{% url 'post:update' slug=obj.slug %}">Update</a>
-							
-		<div class="caption">
-        	{% if obj.draft %}<h3>Staff only: Draft</h3>{% endif %} {% if obj.published > today %}<h3>Staff Only: Future Post</h3>{% endif %}
-      	</div>
-						
+<div class="container post-container">
+		<aside>
+		{% include 'sidebar.html' %}
+	</aside>
+	<section class="col-md-8">	
+		{% for obj in queryset_list %}
+			<div class="row ">
+				<div class="col-md-7 col-md-push-5">
+					<div class="post-cate">
+						<a href="{{ obj.get_section_url }}">{{ obj.categories }}</a>
 					</div>
+					<h2 class="featurette-heading post-featurette-heading" >
+						<a href="{{ obj.get_absolute_url }}">
+					{{ obj.title|title }}
+					</h2></a>
+					<div class="post-meta text-muted">
+						{{ obj.created|date:" M  d Y" }}
+					</div>
+					<p class="lead post-para" >
+						{{ obj.content|truncatewords:20 }}
+					</p>
+					
 				</div>
-				<hr>
-				{% endfor %}
+				<div class="col-md-5 col-md-pull-7">
+					<a href="{{ obj.get_absolute_url }}">
+					{% if obj.image %}
+					<img class="featurette-image img-responsive center-block" data-src=""  src="{{ obj.image.url }}" alt="{{ obj.title }}" style="width:375px; height:250px;"/>
+					</a>
+					{% endif %}
+				</div>
 			</div>
-		</div>
+			<hr>
+		{% endfor %}	
+	</section>
 		<div class="pagination">
     <span class="step-links">
         {% if queryset_list.has_previous %}
@@ -48,6 +53,6 @@
             <a href="?page={{ queryset_list.next_page_number }}">next</a>
         {% endif %}
     </span> 
+	</div>
 </div>
-    </div>
 {% endblock %}

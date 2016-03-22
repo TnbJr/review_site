@@ -2,9 +2,14 @@ from django.db import models
 from embed_video.fields import EmbedVideoField
 from django.utils.text import slugify
 from django.core.urlresolvers import reverse
-from django.db.models.signals import pre_save
+# from django.db.models.signals import pre_save
 # Create your models here.
 class Video(models.Model):
+	CATEGORY_CHOICES = (
+		("Video-Reviews", "Reviews"),
+		("Video", "Video"),
+
+		)
 	title = models.CharField(max_length=255, unique=True)
 	slug = models.SlugField(unique=True)
 	content = models.TextField()
@@ -13,6 +18,7 @@ class Video(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	video = EmbedVideoField()
+	categories = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default="Video")
 
 	def __str__(self):
 		return self.title

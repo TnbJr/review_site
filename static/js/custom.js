@@ -1,30 +1,19 @@
 'use strict'
 
-$(document).ready(function(){
-	console.log("Slime")
-	var page = 1;
-	var empty_page = false;
-	var block_request = false;
+// $(document).ready(function(){
 
-	$(window).scroll(function(){
-		var margin = $(document).height() - $(window).height() - 200;
-		console.log($(window).height())
-		if ($(window).scrollTop() > margin && 
-			empty_page === false && block_request === false){
-			block_request = true;
-			page += 1;
-			$.get('?page=' + page, function(data){
-				console.log(data)
-				if(data === ''){
-					empty_page = true;
-				}
-				else{
-					block_request = false;
-					$('#all-post').append(data);
-				}
-			});
+// var mainbottom = $('#home').offset().top + $('#home').height();
+// // on scroll, 
+// $(window).on('scroll',function(){
+//     // we round here to reduce a little workload
+//     var stop = Math.round($(window).scrollTop());
+//     if (stop > mainbottom) {
+//         $('.navbar').addClass('past-main');
+//     } else {
+//         $('.navbar').removeClass('past-main');
+//    }
 
-		}
-	});
+// });
 
-});
+
+// });

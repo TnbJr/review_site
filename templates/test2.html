@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+ {% load embed_video_tags %}
+
+
+
+{% block jumbotron %}
+{% include 'navbar.html' %}
+<div class='container'>
+	<div class="row" >
+		<div class='col-sm-12'>
+			<div class="home-img" style="position: relative;">
+				<img src="{{ main_featured.image.url }}" alt="{{ main_featured.title }} ">
+				<div class="main-featured-meta">
+					<h2> {{ main_featured.title }}</h2>
+					<span class="read-more"> Read More </span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row mulfeature-row" style="margin-top: 155px;" >
+		
+{% for item in other_featured %}
+
+
+<div class="col col-xs-3">
+  <div class="post-box small" data-permalink="http://hypebeast.com/2016/3/kanye-west-global-citizen-the-national-mumford-sons">
+    <div class="teaser thumbnail" style="margin-bottom: 10px; border: 0px;">
+      <a href="" class="" title="Kanye West Has Yet Another Project Officially Set for a 2016 Release">
+      <img src="{{ item.image.url }}" alt="Kanye West Has Yet Another Project Officially Set for a 2016 Release" style="height: 180px; width: 270px;">
+      </a>
+    </div>
+    <div class="categories">
+      <a href="" class="category" style="margin-bottom: 3px;" title="Music">{{ item.categories }}
+				</a>
+    </div>
+    <a class="title" href="" title="Kanye West Has Yet Another Project Officially Set for a 2016 Release">
+    <h2 style="margin-top: 8px; font-size: 16px;">{{ item.title }}</
+    </a>
+  </div>
+</div>
+{% endfor %}
+
+		</div>
+	<hr>
+	</div>
+
+
+{% endblock jumbotron %}
+
+
+{% block content %}
+<main class="container">
+   <div class="row">
+    <div class="col-md-8" >
+  
+<div id="all-post">
+{% for obj in query %} 
+<div class="row featurette">
+    <div class="col-md-7 col-md-push-5">
+      <h2 class="featurette-heading">
+      <a href="{{ obj.get_absolute_url }}">
+      {{ obj.title|title }}</h2></a>
+      <p class="lead">{{ obj.content|truncatewords:20 }}</p>
+    </div>
+    <div class="col-md-5 col-md-pull-7">
+    <a href="{{ obj.get_absolute_url }}">
+    {% if obj.image %}
+      <img class="featurette-image img-responsive center-block" data-src=""  src="{{ obj.image.url }}" alt="Generic placeholder image" style="width:375px; height:250px;"/>
+    </a>
+      {% else%}
+                {% video obj.video as my_video %}
+    <a href="{{ obj.get_absolute_url }}">
+      <img class="featurette-image img-responsive center-block" data-src=""  src="{{ my_video.thumbnail }}" alt="" style="width:375px; height:250px;"/>
+    </a>
+      {% endvideo %}
+                {% endif %}
+    </div>
+</div>
+      <hr class="featurette-divider">
+ {% endfor %}
+
+
+ 
+
+  </div>
+   </div>
+
+      </div>
+
+
+
+
+
+</main>
+
+
+{% endblock content %}
+
+

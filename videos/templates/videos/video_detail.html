@@ -4,12 +4,54 @@
 
 {% block content %}
 {% include "navbar.html" %}
-	<h1>Detail</h1>
-	<p></p>
-	<p></p>
-	{{ instance.id }} 
-	{{ instance.description }} 
-	 {% video instance.video 'small' %}
+<main class="container-fluid video-container">
+<section id="video" class="col-md-12">
+	<div class="video-wrapper text-center" >
+		{% video instance.video 'medium' %}
+	</div>
+</section>
+	
+<section class="container">
+	
+<article class="col-md-8">
+	<h1>{{ instance.title|title  }}</h1>
+	<div class="post-meta">
+      <span class="text-muted">{{ instance.published }}</span> 
+      <span id="social-share" class="pull-right">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" >
+        <i class="fa fa-facebook-square fa-2x"></i>
+        </a>
+
+        <a href="https://twitter.com/home?status={{ share_string }}%20{{ request.build_absolute_uri }}">
+        <i class="fa fa-twitter-square fa-2x"></i>
+        </a>
+
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ share_string }}&source={{ request.build_absolute_uri }}" target="_blank">
+        <i class="fa fa-linkedin-square fa-2x"></i>
+        </a>
+
+        <a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ share_string }}">
+        <i class="fa fa-reddit-square fa-2x"></i>
+        </a>
+        <a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}'>
+        <i class="fa fa-google-plus-square fa-2x"></i>
+        </a>
+      </span>
+    </div>
+	<p class="video-para">{{  instance.content }} </p> 
+	
+	<div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
+</article>
+
+<aside>
+	{% include 'sidebar.html' %}
+</aside>
+</section>
+
+		
+</main>
+
+	 
 
 
 

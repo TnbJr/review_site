@@ -4,6 +4,9 @@ from .models import Profile
 class ProfileForm(forms.ModelForm):
 	class Meta:
 		model = Profile
-		# exclude =("user")
-		fields = ['bio',
+		fields = ['bio', 
+				'date_of_birth',
+				'gender',
+				'cannabis_type',
+				'location'
 				 ]

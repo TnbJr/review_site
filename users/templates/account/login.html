@@ -2,17 +2,24 @@
 
 {% load i18n %}
 {% load account socialaccount %}
+{% load crispy_forms_tags %}
 
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
+{% include 'navbar.html' %}
+<main class="container signup-container">
+  
 
-<h1>{% trans "Sign In" %}</h1>
-<h1>OMG</h1>
 
 {% get_providers as socialaccount_providers %}
 
-{% if socialaccount_providers %}
+
+
+<div class="panel panel-default">
+  <div class="panel-heading text-center signup-panel-heading" ><h1>{% trans "Sign In" %}</h1></div>
+  <div class="panel-body">
+   {% if socialaccount_providers %}
 <p>{% blocktrans with site.name as site_name %}Please sign in with one
 of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
 for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
@@ -36,12 +43,15 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
 <form class="login" method="POST" action="{% url 'account_login' %}">
   {% csrf_token %}
-  {{ form.as_p }}
+  {{ form|crispy }}
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
   <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
   <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
 </form>
+  </div>
+</div>
+</main>
 
 {% endblock %}

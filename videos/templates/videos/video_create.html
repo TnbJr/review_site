@@ -5,7 +5,8 @@
 {% block content %}
 {% include "navbar.html" %}
   
-
+<main class="container video-crud-container">
+	
 	{% if form %}
 		<form name="video-post" action="{% url 'video:create'%}"  enctype="multipart/form-data" method="POST">
 	    {% csrf_token %}
@@ -13,4 +14,5 @@
 		<input type="submit" value="Create Content">
 		</form>
 	{% endif %}
+</main>
 {% endblock %}

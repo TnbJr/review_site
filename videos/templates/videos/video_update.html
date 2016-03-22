@@ -5,7 +5,7 @@
 {% block content %}
 {% include "navbar.html" %}
 <!--   <h1>{{ title }}</h1> -->
-
+<main class="container video-crud-container">
 	{% if form %}
 		<form name="video-update" action="{% url 'video:update' pk=pk %}" method="POST">
 	    {% csrf_token %}
@@ -14,4 +14,5 @@
 		</form>
 		<button><a href="{% url 'video:delete' pk=pk %}">Delete</a></button>	
 	{% endif %}
+</main>
 {% endblock %}

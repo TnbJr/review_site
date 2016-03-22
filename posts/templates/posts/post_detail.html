@@ -3,147 +3,53 @@
 
 {% block content %}
 {% include "navbar.html" %}
-  <h1>{{ title }} </h1>
+  
 
-  {% if instance.image %}
-  <img src="{{ instance.image.url }}" class="img-reponsive" />
-  {% endif %}
-	{{ instance.content }} <br/>
-	{{ instance.created }} <br/>
-	{{ instance.updated }} <br/>
-	{{ instance.published }} <br/>
-	{{ instance.id }} <br/>
+  
+<main class="container post-container">
+  <section class="col-md-8">
+    {% if instance.image %}
+      <div class="post-img">
+        <img src="{{ instance.image.url }}"/>
+      </div>
+    {% endif %}
+    <h1>{{ title|title  }}  </h1>
+    <div class="post-meta">
+      <span>{{ instance.published }}</span> 
+      <span id="social-share" class="pull-right">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" >
+        <i class="fa fa-facebook-square fa-2x"></i>
+        </a>
 
-	{% if instance.draft %}<span style="color:red;">Draft</span> {% endif %}
-		<hr>
-				{{ share_string }}
-				{{ request.build_absolute_uri }}
-		<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" >
-					<i class="fa fa-facebook-square fa-4x"></i>
-					</a>
+        <a href="https://twitter.com/home?status={{ share_string }}%20{{ request.build_absolute_uri }}">
+        <i class="fa fa-twitter-square fa-2x"></i>
+        </a>
 
-					<a href="https://twitter.com/home?status={{ share_string }}%20{{ request.build_absolute_uri }}">
-						<i class="fa fa-twitter-square fa-4x"></i>
-					</a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ share_string }}&source={{ request.build_absolute_uri }}" target="_blank">
+        <i class="fa fa-linkedin-square fa-2x"></i>
+        </a>
 
-					<a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ share_string }}&source={{ request.build_absolute_uri }}" target="_blank">
-						<i class="fa fa-linkedin-square fa-4x"></i>
-				</a>
-				
-					<a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ share_string }}">
-					 	<i class="fa fa-reddit-square fa-4x"></i>
-					 </a>
-					 
-					 <a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}'>
-					  	<i class="fa fa-google-plus-square fa-4x"></i>
-					  </a>
-<br>
-		<div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
+        <a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ share_string }}">
+        <i class="fa fa-reddit-square fa-2x"></i>
+        </a>
+        <a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}'>
+        <i class="fa fa-google-plus-square fa-2x"></i>
+        </a>
+      </span>
+    </div>
+    <article>
+      <p>{{ instance.content|linebreaks }}</p> 
+    </article>
 
-		<!-- <div class="lr-row row">
-        <div class ="lr-col col-sm-12" style="">
-        <div class ="left-col col-sm-6" style="
-        float: left;
-        ">
-          <div class="lr-features" style="border-right: 2px dashed #bb9944;
-          padding-right: 20px;
-          ">
-           <div class="left" style="
-           ">
-            <div class="item">
-             <div class="image-wrapper" style="
-             display:block; 
-             position: relative;">
-              <a href="/read/open-weed-bar-oregon-wedding-huge-hit">
-               <div class="article-type" style="padding-bottom: 10px;
-               ">
-                Tutorials
-               </div>
-                <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="300" height="200">
-              </a>
-             </div>
-             <h3 class="headline">
-              <a href="/read/open-weed-bar-oregon-wedding-huge-hit">
-               Open Weed Bar at Oregon Wedding is a Huge Hit
-              </a>
-             </h3>
-             <div class="byline">
-              Fri Aug 28, 2015
-             </div>
-            </div>
-            <div class="item" style="
-            border-top: 1px solid #adadad;">
-             <h3 class="headline">
-              <a href="/read/everything-you-ever-wanted-know-about-marijuana-and-taxes">
-               Everything You Ever Wanted To Know About Marijuana and Taxes
-              </a>
-             </h3>
-             <div class="byline">
-              Fri Aug 28, 2015
-             </div>
-            </div>
-            <div class="item" style="    border-top: 1px solid #adadad;">
-             <h3 class="headline">
-              <a href="/read/radical-rant-even-tobacco-smoke-free-bars-are-ridiculous-abridgments-freedom">
-               Radical Rant: Even Tobacco Smoke-Free Bars Are Ridiculous Abridgments of Freedom
-              </a>
-             </h3>
-             <div class="byline">
-              Fri Aug 28, 2015
-              </div>
-             </div>
-            </div>
-           </div>
-        </div>
+    {% if instance.draft %}<span style="color:red;">Draft</span> {% endif %}
+    <hr>
 
+    <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
+  </section>
+{% include 'sidebar.html' %}
+</main>
 
-      <div class ="right-col col-sm-6">
-        <div class="lr-features" style="">
-         <div class="right" style="
-        ">
-          <div class="item">
-           <div class="image-wrapper">
-            <a href="/read/open-weed-bar-oregon-wedding-huge-hit">
-              <div class="article-type" style="padding-bottom: 10px;">
-                Reviews
-               </div>
-             <img class="thumbnail" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="300" height="200">
-            </a>
-           </div>
-           <h3 class="headline">
-            <a href="/read/open-weed-bar-oregon-wedding-huge-hit">
-             Open Weed Bar at Oregon Wedding is a Huge Hit
-            </a>
-           </h3>
-           <div class="byline">
-            Fri Aug 28, 2015
-           </div>
-          </div>
-          <div class="item" style="
-          border-top: 1px solid #adadad;">
-           <h3 class="headline">
-            <a href="/read/everything-you-ever-wanted-know-about-marijuana-and-taxes">
-             Everything You Ever Wanted To Know About Marijuana and Taxes
-            </a>
-           </h3>
-           <div class="byline">
-            Fri Aug 28, 2015
-           </div>
-          </div>
-          <div class="item" style="
-          border-top: 1px solid #adadad;">
-           <h3 class="headline">
-            <a href="/read/radical-rant-even-tobacco-smoke-free-bars-are-ridiculous-abridgments-freedom">
-             Radical Rant: Even Tobacco Smoke-Free Bars Are Ridiculous Abridgments of Freedom
-            </a>
-           </h3>
-           <div class="byline">
-            Fri Aug 28, 2015
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>   -->
+  
+ 
+
 {% endblock %}

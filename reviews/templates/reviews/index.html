@@ -5,13 +5,39 @@
 {% block content %}
 {% include "navbar.html" %}
 
-<h1>List</h1>
 
-{% for item in query_list %}
-<ul>
-	<li><a href="{{ item.get_absolute_url }}">{{ item.title|title }}</a></li>
-</ul>
+<main class="container" id="review-index-container">
+<aside>
+  
+{% include 'sidebar.html' %}
+</aside>
 
-{% endfor %}
+<section class="col-md-8">
+	 {% for obj in query_list %} 	
+<div class="row featurette">
+    <div class="col-md-7 col-md-push-5">
+    <div class="review-category"><a href="{{ obj.get_section_url }}">{{ obj.categories }}</a></div>
+      <h2 class="featurette-heading review-heading" >
+      <a href="{{ obj.get_absolute_url }}">
+      {{ obj.title|title }}</h2></a>
+      <div class="review-meta text-muted">{{ obj.created|date:" M  d Y" }}</div>
+      <p class="lead" >{{ obj.content|truncatewords:20 }}</p>
+    </div>
+    
+    <div class="col-md-5 col-md-pull-7">
+    <a href="{{ obj.get_absolute_url }}">
+    {% if obj.image %}
+      <img class="featurette-image img-responsive center-block" data-src=""  src="{{ obj.image.url }}" alt="Generic placeholder image" style="width:375px; height:250px;"/>
+    </a>
+                {% endif %}
+    </div>
+</div>
+
+      <hr class="featurette-divider">
+ {% endfor %}
+</section> 
+
+	
+</main>
 
 {% endblock content %}

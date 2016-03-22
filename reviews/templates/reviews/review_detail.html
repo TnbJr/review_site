@@ -5,37 +5,135 @@
 
 {% block content %}
 {% include "navbar.html" %}
-	<h1>{{ title }}</h1>
-	<h2>{{ instance.published }}</h2>
-	<h5>{{ instance.userreview_set.count }} reviews ({{ average|floatformat }} out of 5 average rating)</h5>
 
-{% if instance.userreview_set.all %}
-	{% for review in instance.userreview_set.all %}	
-		<h4>{{ review.user }}</h4>
-		<p>{{ review.comment }}</p>
-		<em> User rating {{ review.rating }}</em>
-			{% if request.user.id == review.user.id %}
-		 		<h3>this is your review</h3>	
-		 	{% endif %}
-		<h4>Leave your review below</h4>
-	{% endfor %}
-	{% else %}
-		<p>No reviews for this product yet</p>
-{% endif %}
+<main class="container post-container">
+  <section class="col-md-8">
+      <h1>{{ title|title  }} </h1>
+    <div class="review-meta">
+      <span class="text-muted">
+      	{{ instance.published|date:" M  d Y " }}
+      </span> 
+      <span id="social-share" class="pull-right">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" >
+        	<i class="fa fa-facebook-square fa-2x"></i>
+        </a>
+        <a href="https://twitter.com/home?status={{ share_string }}%20{{ request.build_absolute_uri }}">
+        	<i class="fa fa-twitter-square fa-2x"></i>
+        </a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ share_string }}&source={{ request.build_absolute_uri }}" target="_blank">
+        	<i class="fa fa-linkedin-square fa-2x"></i>
+        </a>
+        <a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ share_string }}">
+        	<i class="fa fa-reddit-square fa-2x"></i>
+        </a>
+        <a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}'>
+        	<i class="fa fa-google-plus-square fa-2x"></i>
+        </a>
+      </span>
+    </div>
+    {% if instance.image %}
+      <div class="review-img">
+        <img src="{{ instance.image.url }}"/>
+      </div>
+    {% endif %}
 
-{% if user.is_authenticated %}
-	{% if form %}
-		<form name="review-user" action="{% url 'review:detail' pk=pk %}" method="POST">
-		    {% csrf_token %}
-		    {{ form|crispy }}
-			<input type="submit" value="Submit Review">
-		</form>
-	{% endif %}
-		{% else%}
-		<a href="{% url 'account_login' %}">han</a>
-{% endif %}
 
+    <table class="table table-hover table-condensed review-table">
+		<tbody>
+			<tr>
+				<th>Product Dimensions</th>
+				<td>35 inches</td>
+			</tr>
+			<tr>
+				<th>Product Weight</th>
+				<td>35 inches</td>
+			</tr>
+			<tr>
+				<th>Product Capability</th>
+				<td>35 inches</td>
+			</tr>
+			<tr>
+				<th>Price Range </th>
+				<td>35 inches</td>
+			</tr>
+			<tr>
+				<th>Product Dimensions</th>
+				<td>35 inches</td>
+			</tr>
+		</tbody>
+	</table>
+
+    <article>
+      <p>{{ instance.content|linebreaks }}</p> 
+    </article>
+
+    {% if instance.draft %}<span style="color:red;">Draft</span> {% endif %}
+    <hr>
+	
+	<h5>
+		{{ instance.userreview_set.count }} reviews ({{ average|floatformat }} out of 5 average rating)
+	</h5>
+
+	<a href="{% url 'review:user-reviews' pk=instance.id %}"><h5>
+		View All Reviews
+	</h5></a>
+<!-- {% if instance.userreview_set.all %} -->
+	<section class="row">
+
+		<div class="col-xs-6 col-lg-9 review-users">
+			<div class="well">
+				{% for review in user_review %}	
+				<hr data-brackets-id="12673">
+				<ul data-brackets-id="12674" id="sortable" class="list-unstyled ui-sortable">
+					<strong class="pull-left primary-font">{{ review.user|capfirst }}</strong>
+					<small class="pull-right text-muted">
+					   <span class="glyphicon glyphicon-time"></span>{{ review.created|date:"M d Y" }}</small>
+					</br>
+					<li class="ui-state-default">{{ review.comment }}</li>
+					</br>
+				</ul>
+				{% if request.user.id == review.user.id %}
+				 		<a href="{% url 'review:edit-user-reviews' pk=review.id %}"><h6>edit your review</h6></a>
+				 	{% endif %}
+				 {% endfor %}
+			</div>
+		</div>
+	</section>
 		
+
+	{% if user.is_authenticated %}
+		<h3 class="title xl-title" >
+		Leave A Review
+		</h3>
+		{% if messages %}
+			<div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				{% for message in messages %}
+					<p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+				{% endfor %}
+			</div>
+		{% endif  %}
+
+		{% if form %}
+			<form name="review-user" action="{% url 'review:detail' slug=slug %}" method="POST">
+			{% csrf_token %}
+			{{ form|crispy }}
+			<input type="submit" value="Submit Review">
+			</form>
+		{% endif %}
+	{% else %}
+		<a href="{% url 'account_login' %}">Login To Leave A Review</a>
+	{% endif %}
+	{% endif %}
+
+	 </section>
+	{% include 'sidebar.html' %}
+ </main>
+      
+
+
+
+	
 
 	
 

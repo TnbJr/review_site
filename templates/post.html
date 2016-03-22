@@ -1,35 +1,29 @@
  {% load embed_video_tags %}
-  {% load el_pagination_tags %}
 
-  {% paginate query %}
-      {% for obj in query %}
-
-        <div class="media">
-          <div class="media-left media-top">
-            <a href="{{ obj.get_absolute_url }}">
-              {% if obj.image %}
-                <img src="{{ obj.image.url }}" class="img-reponsive " width="375" height="250" />
-            </a>
-            <!-- Creates a thumbnail for video post -->
-              {% else%}
+ {% for obj in query %} 
+<div class="row featurette">
+    <div class="col-md-7 col-md-push-5">
+    <div class="post-cate" ><a href="{{ obj.get_section_url }}">{{ obj.categories }}</a></div>
+      <h2 class="featurette-heading post-featurette-heading" >
+      <a href="{{ obj.get_absolute_url }}" >
+      {{ obj.title|title }}</h2></a>
+      <div class="post-meta text-muted">{{ obj.created|date:" M  d Y" }}</div>
+      <p class="lead post-para" >{{ obj.content|truncatewords:20 }}</p>
+    </div>
+    <div class="col-md-5 col-md-pull-7">
+    <a href="{{ obj.get_absolute_url }}">
+    {% if obj.image %}
+      <img class="featurette-image img-responsive center-block" data-src=""  src="{{ obj.image.url }}" alt="{{ obj.title }}" style="width:375px; height:250px;"/>
+    </a>
+      {% else%}
                 {% video obj.video as my_video %}
-                   <a href="{{ obj.get_absolute_url }}">
-                <img src="{{ my_video.thumbnail }}" class="img-reponsive" width="375" height="250" />
-            </a>
-                  {% endvideo %}
+    <a href="{{ obj.get_absolute_url }}">
+      <img class="featurette-image img-responsive center-block" data-src=""  src="{{ my_video.thumbnail }}" alt="" style="width:375px; height:250px;"/>
+    </a>
+      {% endvideo %}
                 {% endif %}
-          </div>
-            <div class="media-body">
-                <h4>
-                  <a href="{{ obj.get_absolute_url }}">{{ obj.title|title }}</a>
-                </h4>
-                <p>{{ obj.content|truncatewords:20 }}</p>
-                {{ obj.id }}
-            </div>
-          </div>
-          <hr>
-          
-        {% endfor %}
-        {% show_pages %}
-       
+    </div>
+</div>
+      <hr class="featurette-divider">
+ {% endfor %}
       

@@ -4,12 +4,14 @@
 
 {% block content %}
 {% include "navbar.html" %}
+ <div class="container review-container text-center ">
   <h1>{{ title }}</h1>
 <h1> {{ review }}</h1>
 
-		<form name="content-delete" action="{% url 'review:delete' pk=pk %}" method="POST">
+		<form name="content-delete" action="{% url 'review:delete' slug=slug %}" method="POST">
 	    {% csrf_token %}
 		<input type="submit" value="Delete Content">
 		</form>	
+	</div>
 
 {% endblock %}

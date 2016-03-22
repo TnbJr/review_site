@@ -4,7 +4,8 @@
 
 {% block content %}
 {% include "navbar.html" %}
- <!--  <h1>{{title}}</h1> -->
+<div class="container review-container">
+  <h1>{{title}}</h1>
 
 	{% if form %}
 		<form name="product-review" action="{% url 'review:create'%}"  enctype="multipart/form-data" method="POST">
@@ -13,4 +14,8 @@
 		<input type="submit" value="Create Review">
 		</form>
 	{% endif %}
+
+
+	
+</div>
 {% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+{% include "navbar.html" %}
+<main class="container post-container">
+
+	<h1 class="text-center">Edit Your Review</h1>
+	{% if form %}
+		<form name="product-review" action="{% url 'review:edit-user-reviews' pk=pk%}"  enctype="multipart/form-data" method="POST">
+	    {% csrf_token %}
+	    {{ form|crispy }}
+		<input type="submit" value="Create Review">
+		<button>
+			<a href="{% url 'review:delete-user-reviews' pk=pk %}">Delete</a>
+		</button>
+		</form>
+	{% endif %}
+</main>
+{% endblock %}

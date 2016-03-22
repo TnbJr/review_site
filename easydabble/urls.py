@@ -26,6 +26,7 @@ urlpatterns = [
 	url(r'^section/', include('posts.urls_categories', namespace='cate')),
 	url(r'^video/', include('videos.urls', namespace='video')),
 	url(r'^review/', include('reviews.urls', namespace='review')),
+	url(r'^review-section/', include('reviews.urls_reviews_categories', namespace='review-category')),
 	url(r'^accounts/', include('allauth.urls')),
 	url(r'^profile/', include('users.urls', namespace='profile')),
 

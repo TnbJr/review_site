@@ -4,6 +4,7 @@
 
 {% block content %}
 {% include "navbar.html" %}
+ <div class="container post-container">
   <h1>{{ title }}</h1>
 
 	{% if form %}
@@ -14,4 +15,5 @@
 		</form>
 		<button><a href="{% url 'post:delete' slug=slug %}">Delete</a></button>	
 	{% endif %}
+</div>
 {% endblock %}

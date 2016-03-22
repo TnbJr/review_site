@@ -1,6 +1,6 @@
 
-<nav class="navbar navbar-default navbar-static-top">
-  <div class="container">
+<nav class="navbar navbar-inverse navbar-static-top navbar-fixed-top">
+  <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
@@ -13,13 +13,27 @@
     
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a href="{% url 'sitemaps:index' %}">Home</a></li>
-        <li><a href="{% url 'sitemaps:about' %}">About</a></li>
-        <li><a href="{% url 'contact:contact' %}">Contact</a></li>
-        <li><a href="{% url 'cate:detail-category' slug='news' %}">News</a></li>
-        <li><a href="{% url 'review:index' %}">Reviews</a></li>
+        <li class="dropdown">
+          <a href="post:index-post" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reviews <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'review-category:category'  category='handheld-vaporizer' %}">Handheld Vaporizer</a></li>
+            <li><a href="{% url 'review-category:category'  category='desktop-vaporizer' %}">Desktop Vaporizer</a></li>
+            <li><a href="{% url 'review-category:category'  category='Other' %}">Other</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'post:index-post'  %}">Articles</a></li>
          <li><a href="{% url 'video:index'  %}">Video</a></li>
+          
       </ul>
+       <ul class="nav navbar-nav navbar-right">
+       {% if user.is_anonymous %}
+        <li><a href="{% url 'account_login' %}">Login</a></li>
+        <li><a href="{% url 'account_signup' %}">Register</a></li>
+         {% else %}
+      <li><a href="{% url 'profile:detail' pk=request.user.id%}">Profile</a></li>
+       <li><a  href="{% url 'account_logout' %}">Logout</a></li>
+      {% endif %}
+          </ul>
     </div><!--/.nav-collapse -->
   </div>
 </nav>

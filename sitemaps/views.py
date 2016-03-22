@@ -27,11 +27,8 @@ class IndexView(View):
 		template = 'index.html'
 		form = SignUpForm(request.POST or None)
 		query = self.query_chain()
+		featured_item = ProductReview.objects.filter(featured=True)
 		paginator = Paginator(query, 5) # Show 10 contacts per page
-		print(paginator.num_pages)
-		print(request.GET)
-		# if request.is_ajax():
-		# 	template = page_template
 		page = request.GET.get('page')
 		try:
 			queryset = paginator.page(page)
@@ -45,23 +42,16 @@ class IndexView(View):
 			# If page is out of range (e.g. 9999), deliver last page of results.
 			queryset = paginator.page(paginator.num_pages)
 		context = {
-			"form": form,
-			"query": queryset
+			"signup_form": form,
+			"query": queryset,
+			"main_featured": featured_item.first(), 
+			"other_featured": featured_item[1:5],
 		}
 		if request.is_ajax():
 			return render(request, page_template, context)
 		return render(request, template, context)
 
-	def post(self, request):
-		form = SignUpForm(request.POST or None)
-		context = {
-		"form": form, 
-		}
-		if form.is_valid():
-			instance = form.save(commit=False)
-			instance.save()
-			return redirect('sitemaps:share')
-		return render(request, 'index.html', context)
+
 	
 class AboutView(View):
 	def get(self, request):

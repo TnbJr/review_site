@@ -1,20 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
-	<h1>OMG</h1>
-	<h1>{{ queryset }}</h1>
-	<p>{{ bio }}</p>
-	<h2>{{ request.user}}</h2>
-	{% if form %}
-		<form name="content-update" action="{% url 'profile:update' %}" method="POST">
-	    {% csrf_token %}
-	    {{ form.as_p }}
-		<input type="submit" value="Update Content">
-		</form>
-	{% endif %}
-</body>
-</html>
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+{% include 'navbar.html'%}
+
+<main>
+<div class="container" style="margin-top: 100px;">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title text-center">{{ profile.user }}</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+
+                <div class=" col-md-12 col-lg-12 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Satavia, Indica or Hybrid:</td>
+                        <td>Programming</td>
+                      </tr>
+                      <tr>
+                        <td>Date Joined</td>
+                        <td>06/23/2013</td>
+                      </tr>
+                      <tr>
+                        <td>Date of Birth</td>
+                        <td>01/24/1988</td>
+                      </tr>
+                         <tr>
+                             <tr>
+                        <td>Gender</td>
+                        <td>Male</td>
+                      </tr>
+                        <tr>
+                        <td>Home Address</td>
+                        <td>Metro Manila,Philippines</td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td><a href="mailto:info@support.com">info@support.com</a></td>
+                      </tr>
+                        <td>Phone Number</td>
+                        <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
+                        </td>
+                           
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+                 <div class="panel-footer">
+                      
+                    </div>
+            
+          </div>
+        </div>
+      </div>
+
+</main>
+{% endblock content %}

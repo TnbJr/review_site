@@ -4,6 +4,7 @@
 
 {% block content %}
 {% include "navbar.html" %}
+  <div class="container post-container text-center">
   <h1>{{ title }}</h1>
 
 
@@ -11,5 +12,5 @@
 	    {% csrf_token %}
 		<input type="submit" value="Delete Content">
 		</form>	
-
+</div>
 {% endblock %}
