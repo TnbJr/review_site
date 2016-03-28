@@ -2,10 +2,21 @@ from django.shortcuts import render
 from django.http import Http404
 from django.views.generic import View
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
+from braces.views import StaffuserRequiredMixin
 from .models import Video 
 from .forms import VideoForm
 
-# Create your views here.
+class VideoCategoryView(View):
+	template = "videos/index.html"
+	def get(self, request, category):
+		queryset = Video.objects.filter(category_slug=category, draft=False, published__lte=timezone.now())
+		if len(queryset) == 0:
+			raise Http404
+		context = {
+			"queryset": queryset
+		}
+		return render(request, self.template, context)
 
 class VideoIndexView(View):
 	template = "videos/index.html"
@@ -29,7 +40,7 @@ class VideoDetailView(View):
 		}
 		return render(request, self.template, context)
 
-class VideoCreateView(View):
+class VideoCreateView(StaffuserRequiredMixin, View):
 	template = "videos/video_create.html"
 	form = VideoForm
 	title = "Create A New Video Post"
@@ -54,7 +65,7 @@ class VideoCreateView(View):
 			}
 		return render(request, self.template, context)
 
-class VideoUpdateView(View):
+class VideoUpdateView(StaffuserRequiredMixin, View):
 	template = "videos/video_update.html"
 	form = VideoForm
 	def get(self, request, pk):
@@ -80,7 +91,7 @@ class VideoUpdateView(View):
 		}
 		return render(request, self.template, context)
 
-class VideoDeleteView(View):
+class VideoDeleteView(StaffuserRequiredMixin, View):
 	title = "Delete Video"
 	template = "videos/video_delete.html"
 	def get(self, request, pk):

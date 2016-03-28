@@ -13,16 +13,9 @@
     
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="post:index-post" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reviews <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{% url 'review-category:category'  category='handheld-vaporizer' %}">Handheld Vaporizer</a></li>
-            <li><a href="{% url 'review-category:category'  category='desktop-vaporizer' %}">Desktop Vaporizer</a></li>
-            <li><a href="{% url 'review-category:category'  category='Other' %}">Other</a></li>
-          </ul>
-        </li>
         <li><a href="{% url 'post:index-post'  %}">Articles</a></li>
-         <li><a href="{% url 'video:index'  %}">Video</a></li>
+        <li><a href="{% url 'review:index'  %}">Reviews</a></li>
+        <li><a href="{% url 'video:index'  %}">Videos</a></li>
           
       </ul>
        <ul class="nav navbar-nav navbar-right">

@@ -5,8 +5,8 @@
 {% block content %}
 {% include "navbar.html" %}
 <div class="container post-container">
-  <h1>{{title}}</h1>
-{{ profile.user  }}
+  <h1 class="text-center">{{ profile.user  }}</h1>
+
 	{% if form %}
 		<form name="content-post" action="{% url 'post:create'%}"  enctype="multipart/form-data" method="POST">
 	    {% csrf_token %}

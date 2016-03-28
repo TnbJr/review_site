@@ -1,5 +1,5 @@
 from django.views.generic import View
-from django.http import HttpResponse, Http404
+from django.http import Http404
 from django.contrib.auth.decorators import login_required 
 from django.shortcuts import render,redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -24,11 +24,12 @@ class CategoryDetailView(View):
 	template = "posts/category_detail.html"
 	def get(self, request, slug):
 		instance = ContentPost.objects.filter(categories=slug, draft=False, published__lte=timezone.now())
+		if len(instance) == 0:
+			raise Http404
 		context = {
 			"title": slug,
 			"instance": instance,
 		}
-		print('han')
 		return render(request, self.template, context)
 
 

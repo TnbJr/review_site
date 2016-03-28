@@ -9,20 +9,20 @@ from taggit.managers import TaggableManager
 
 class ContentPost(models.Model):
 	CATEGORY_CHOICES = (
-		("News", "News"),
-		("Entertainmet", "Entertainmet"),
-		("Other", "Other"),
+		("news", "News"),
+		("entertainmet", "Entertainmet"),
+		("other", "Other"),
 		)
 	title = models.CharField(max_length=255, unique=True)
 	slug = models.SlugField()
 	image = models.ImageField(null=True, blank=True)
 	content = models.TextField()
+	tags = TaggableManager() 
 	draft = models.BooleanField(default=False)
 	published = models.DateTimeField(auto_now=False, auto_now_add=False)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
-	categories = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default="Entertainmet")
-	tags = TaggableManager() 
+	categories = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default="Entertainmet") 
 	
 
 	def __str__(self):

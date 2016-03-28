@@ -4,7 +4,7 @@
 
 {% block content %}
 {% include "navbar.html" %}
-<main class="container" id="video-index-container" style="margin-top: 100px;">
+<main class="container" id="video-index-container">
 <aside>
 	{% include 'sidebar.html' %}
 </aside>	
@@ -27,9 +27,11 @@
 
 	<div class="col-md-5 col-md-pull-7">
     <a href="{{ item.get_absolute_url }}">
-    <img src="{{ my_video.thumbnail }}" width=250 height=167 class="img-rounded">
+    <img src="{{ my_video.thumbnail }}" class="featurette-image img-responsive center-block" style="width:375px; height:250px;">
     <p>{{ item.description }}</p> 
+    {% if request.user.is_staff %}
     <a href="{% url 'video:update' pk=item.id %}">Update</a>
+    {% endif %}
     </a>
     </div>
    <!--  {% video my_video 'small' %} -->

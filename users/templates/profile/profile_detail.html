@@ -22,43 +22,41 @@
                     <tbody>
                       <tr>
                         <td>Satavia, Indica or Hybrid:</td>
-                        <td>Programming</td>
+                        <td>{{ profile.cannabis_type }}</td>
                       </tr>
                       <tr>
                         <td>Date Joined</td>
-                        <td>06/23/2013</td>
+                        <td>{{ profile.created|date:" M  d Y" }}</td>
                       </tr>
                       <tr>
                         <td>Date of Birth</td>
-                        <td>01/24/1988</td>
+                        <td>{{ profile.date_of_birth|date:" M  d Y" }}</td>
                       </tr>
-                         <tr>
-                             <tr>
-                        <td>Gender</td>
-                        <td>Male</td>
-                      </tr>
-                        <tr>
-                        <td>Home Address</td>
-                        <td>Metro Manila,Philippines</td>
-                      </tr>
-                      <tr>
-                        <td>Email</td>
-                        <td><a href="mailto:info@support.com">info@support.com</a></td>
-                      </tr>
-                        <td>Phone Number</td>
-                        <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
-                        </td>
-                           
-                      </tr>
+                       <tr>
+                           <tr>
+                            <td>Gender</td>
+                            <td>{{ profile.gender }}</td>
+                          </tr>
+                            <tr>
+                            <td>Where I Reside</td>
+                            <td>{{ profile.location }}</td>
+                          </tr>
+                            <td>Bio</td>
+                            <td>{{ profile.bio }}</td>
+                        </tr>
                      
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
-                 <div class="panel-footer">
-                      
-                    </div>
+                 <div class="panel-footer" style="height: 60px;">
+                 {% if request.user == profile.user %}
+                        <div class="pull-right">
+                            <a href="{% url 'profile:update' %}" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                        </div>
+                  {% endif %}
+                  </div>
             
           </div>
         </div>

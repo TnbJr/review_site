@@ -5,6 +5,7 @@ class ProductReviewForm(forms.ModelForm):
 	class Meta:
 		model = ProductReview
 		fields = [ 'title',
+					'image',
 					'content',
 					'published',
 					'affiliate_link',

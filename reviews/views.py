@@ -14,7 +14,7 @@ from braces.views import StaffuserRequiredMixin
 class ReviewCategoryView(View):
 	template = "reviews/index.html"
 	def get(self, request, category):
-		queryset = ProductReview.objects.filter(category_slug=category, draft=False)
+		queryset = ProductReview.objects.filter(category_slug=category, draft=False, published__lte=timezone.now())
 		context = {
 			"query_list": queryset,
 		}
@@ -70,6 +70,7 @@ class ReviewDetailView(View):
 		user_review = instance.userreview_set.order_by('-created')[:9]
 		review_average = UserReview.objects.filter(product_review=instance.id).aggregate(Avg('rating'))
 		user_id = request.user.id
+		print(request.session)
 		context = {
 			"title": instance.title,
 			"instance": instance,
@@ -109,7 +110,10 @@ class ReviewDetailView(View):
 class ReviewIndexView(View):
 	template = "reviews/index.html"
 	def get(self, request):
-		queryset = ProductReview.objects.all()
+		if request.user.is_staff:
+			queryset = ProductReview.objects.all()
+		else:
+			queryset = ProductReview.objects.filter(draft=False, published__lte=timezone.now())
 		context={
 			"query_list": queryset
 		}

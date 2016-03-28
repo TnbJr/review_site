@@ -1,9 +1,10 @@
  {% load embed_video_tags %}
 
  {% for obj in query %} 
+
 <div class="row featurette">
     <div class="col-md-7 col-md-push-5">
-    <div class="post-cate" ><a href="{{ obj.get_section_url }}">{{ obj.categories }}</a></div>
+    <div class="post-cate" ><a href="{{ obj.get_section_url }}">{{ obj.categories|title }}</a></div>
       <h2 class="featurette-heading post-featurette-heading" >
       <a href="{{ obj.get_absolute_url }}" >
       {{ obj.title|title }}</h2></a>

@@ -16,12 +16,16 @@
 	 {% for obj in query_list %} 	
 <div class="row featurette">
     <div class="col-md-7 col-md-push-5">
-    <div class="review-category"><a href="{{ obj.get_section_url }}">{{ obj.categories }}</a></div>
-      <h2 class="featurette-heading review-heading" >
-      <a href="{{ obj.get_absolute_url }}">
-      {{ obj.title|title }}</h2></a>
-      <div class="review-meta text-muted">{{ obj.created|date:" M  d Y" }}</div>
-      <p class="lead" >{{ obj.content|truncatewords:20 }}</p>
+      <div class="review-category"><a href="{{ obj.get_section_url }}">{{ obj.categories }}</a></div>
+        <h2 class="featurette-heading review-heading" >
+        <a href="{{ obj.get_absolute_url }}">
+        {{ obj.title|title }}</h2></a>
+        <div class="review-meta text-muted">{{ obj.created|date:" M  d Y" }}</div>
+        <p class="lead" >{{ obj.content|truncatewords:20 }}</p>
+        {% if request.user.is_staff %}
+                <a href="{% url 'review:update' slug=obj.slug %}">Update</a>
+                {% endif %}
+                </a>
     </div>
     
     <div class="col-md-5 col-md-pull-7">

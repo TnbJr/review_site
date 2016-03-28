@@ -14,4 +14,3 @@ class ContentPostAdmin(admin.ModelAdmin):
 	 
 
 admin.site.register(ContentPost, ContentPostAdmin)
-# admin.site.register(Category)

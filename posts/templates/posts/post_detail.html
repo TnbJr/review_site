@@ -39,6 +39,12 @@
     </div>
     <article>
       <p>{{ instance.content|linebreaks }}</p> 
+      <div>
+       <h3  class="tags-header">Tags:</h3>
+        {% for tag in instance.tags.all %}
+           <span class="tags">  {{ tag.name }} </span>
+        {% endfor %}
+      </div>
     </article>
 
     {% if instance.draft %}<span style="color:red;">Draft</span> {% endif %}

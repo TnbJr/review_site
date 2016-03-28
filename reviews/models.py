@@ -2,6 +2,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.utils.text import slugify 
+from taggit.managers import TaggableManager
 
 
 class ProductReview(models.Model):
@@ -10,9 +11,17 @@ class ProductReview(models.Model):
 		("Handheld Vaporizer", "Hand"),
 		("Other", "Other"),
 		)
+	RATING_CHOICES = (
+		(1, '1'),
+		(2, '2'),
+		(3, '3'),
+		(4, '4'),
+		(5, '5'),
+		)
 	title = models.CharField(max_length=150, unique=True)
 	slug = models.SlugField()
 	image = models.ImageField(null=True, blank=True)
+	rating  = models.IntegerField(choices=RATING_CHOICES)
 	content = models.TextField()
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now = True)
@@ -21,6 +30,7 @@ class ProductReview(models.Model):
 	affiliate_link = models.URLField(null=True, blank=True)
 	categories = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
 	featured = models.BooleanField(default=False)
+	tags = TaggableManager() 
 	category_slug = models.SlugField()
 	convenience = models.CharField(max_length=100, null=True, blank=True)
 	concentrate_only = models.CharField(max_length=100, null=True, blank=True)

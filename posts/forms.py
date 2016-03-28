@@ -9,5 +9,6 @@ class ContentPostForm(forms.ModelForm):
 				 'content',
 				 'draft',
 				 'published',
-				 'categories'
+				 'categories',
+				 'tags'
 			 ]

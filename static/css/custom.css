@@ -1,20 +1,9 @@
-/*.container{
-  margin-top: 150px;
-}*/
 
 html, body {
   width: auto !important;
   overflow-x: hidden !important;
 }
 
-body {
-    /*border-top: 4px solid #bb9944;*/
-    background-size: 80px 60px;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    }
 .navbar-static-top{
   background-color:#fff;
   margin-bottom: 10px;
@@ -48,7 +37,7 @@ display: block;
 }
 
 #home-container{
-  margin-top: 40px;
+  margin-top: 60px;
 }
 
 .home-img{
@@ -169,4 +158,15 @@ h1, h2,h3,h4,h5,h6{
     text-align:center;
     background-color: white;
     clear: both;
+}
+
+.tags-header{
+  display: inline-block;
+}
+
+.tags{
+  background-color: #bb9944;
+  margin-right: 10px;
+  font-size: 15px; color: #fff; 
+  padding: 2px;"
 }
