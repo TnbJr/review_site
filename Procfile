@@ -1,3 +1,3 @@
-web: gunicorn easydabble.wsgi --log-file -
+web: python manage.py collectstatic --noinput; gunicorn easydabble.wsgi
 
 
