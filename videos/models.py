@@ -6,8 +6,8 @@ from taggit.managers import TaggableManager
 
 class Video(models.Model):
 	CATEGORY_CHOICES = (
-		("Video-Reviews", "Reviews"),
-		("Video", "Video"),
+		("video-reviews", "Reviews"),
+		("video", "Video"),
 
 		)
 	title = models.CharField(max_length=255, unique=True)
@@ -15,6 +15,7 @@ class Video(models.Model):
 	content = models.TextField()
 	draft = models.BooleanField(default=False)
 	published = models.DateTimeField(auto_now=False, auto_now_add=False)
+	source = models.URLField(null=True, blank=True)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	video = EmbedVideoField()

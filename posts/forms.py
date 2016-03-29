@@ -10,5 +10,6 @@ class ContentPostForm(forms.ModelForm):
 				 'draft',
 				 'published',
 				 'categories',
+				 'source',
 				 'tags'
 			 ]

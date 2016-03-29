@@ -9,11 +9,10 @@
 	{% include 'sidebar.html' %}
 </aside>	
 <section class="col-md-8">
-	<h1>{{ title }}</h1>
 {% for item in queryset %}
 <div class="row featurette">
     <div class="col-md-7 col-md-push-5">
-    <div class="review-category"><a href="">{{ item.categories }}</a></div>
+    <div class="review-category"><a href="{{ item.get_section_url }}">{{ item.categories }}</a></div>
       <h2 class="featurette-heading review-heading" >
       <a href="{{ item.get_absolute_url }}">
       {{ item.title|title }}</h2></a>
@@ -43,14 +42,22 @@
 	{% endfor %}
 	
 
-	<div class="review-category"><a href="">{{ obj.categories }}</a></div>
-      <h2 class="featurette-heading review-heading" >
-      <a href="{{ obj.get_absolute_url }}">
-      {{ obj.title|title }}</h2></a>
-      <div class="review-meta text-muted">{{ obj.created|date:" M  d Y" }}</div>
-      <p class="lead" >{{ obj.content|truncatewords:20 }}</p>
     </div>
+<div class="pagination">
+        <span class="step-links">
+            {% if queryset.has_previous %}
+                <a href="?page={{ queryset.previous_page_number }}">previous</a>
+            {% endif %}
 
+            <span class="current">
+                Page {{ queryset.number }} of {{ queryset.paginator.num_pages }}.
+            </span>
+
+            {% if queryset.has_next %}
+                <a href="?page={{ queryset.next_page_number }}">next</a>
+            {% endif %}
+        </span> 
+  </div>
 
 </section>
 

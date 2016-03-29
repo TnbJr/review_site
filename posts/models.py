@@ -17,6 +17,7 @@ class ContentPost(models.Model):
 	slug = models.SlugField()
 	image = models.ImageField(null=True, blank=True)
 	content = models.TextField()
+	source = models.URLField(null=True, blank=True)
 	tags = TaggableManager() 
 	draft = models.BooleanField(default=False)
 	published = models.DateTimeField(auto_now=False, auto_now_add=False)

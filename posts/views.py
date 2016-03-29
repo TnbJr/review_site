@@ -15,20 +15,31 @@ class CategoryIndexView(StaffuserRequiredMixin, View):
 	def get(self, request):
 		queryset = ContentPost.objects.all()
 		context={
-			"queryset_list": queryset
+			"queryset": queryset
 		}
-
 		return render(request, self.template, context)
 
 class CategoryDetailView(View):
 	template = "posts/category_detail.html"
 	def get(self, request, slug):
-		instance = ContentPost.objects.filter(categories=slug, draft=False, published__lte=timezone.now())
-		if len(instance) == 0:
+		queryset_list = ContentPost.objects.filter(categories=slug, draft=False, published__lte=timezone.now())
+		if not queryset_list:
 			raise Http404
+		
+		paginator = Paginator(queryset_list, 2) # Show 10 contacts per page
+
+		page = request.GET.get('page')
+		try:
+			queryset = paginator.page(page)
+		except PageNotAnInteger:
+			# If page is not an integer, deliver first page.
+			queryset = paginator.page(1)
+		except EmptyPage:
+			# If page is out of range (e.g. 9999), deliver last page of results.
+			queryset = paginator.page(paginator.num_pages)
 		context = {
 			"title": slug,
-			"instance": instance,
+			"queryset": queryset,
 		}
 		return render(request, self.template, context)
 
@@ -58,6 +69,7 @@ class PostCreateView(StaffuserRequiredMixin, View):
 
 
 class PostDeleteView(StaffuserRequiredMixin, View):
+	template = "posts/post_delete.html"
 	def get(self, request, slug):
 		if not request.user.is_staff or not request.user.is_superuser:
 			raise Http404
@@ -65,7 +77,7 @@ class PostDeleteView(StaffuserRequiredMixin, View):
 			"title": "Delete Content",
 			"slug": slug
 		}
-		return render(request, "posts/post_delete.html", context)
+		return render(request, self.template, context)
 
 	def post(self, request, slug):
 		content_post = get_object_or_404(ContentPost, slug=slug)
@@ -73,6 +85,7 @@ class PostDeleteView(StaffuserRequiredMixin, View):
 		return redirect('post:index-post') 
 
 class PostDetailView(View):
+	template = "posts/post_detail.html"
 	def get(self, request, slug=None):
 		instance = get_object_or_404(ContentPost, slug=slug)
 		if instance.published > timezone.now():
@@ -84,17 +97,17 @@ class PostDetailView(View):
 			"instance": instance,
 			"share_string": share_string
 		}
-		return render(request, "posts/post_detail.html", context)
+		return render(request, self.template, context)
 
 class PostIndexView(View):
 	template = "posts/index.html"
 	def get(self, request):
 		today = timezone.now().date()
-		if request.user.is_staff or request.user.is_superuser:
+		if request.user.is_staff:
 			queryset_list = ContentPost.objects.all()
 		else:
 			queryset_list = ContentPost.objects.filter(draft=False, published__lte=timezone.now())
-		paginator = Paginator(queryset_list, 10) # Show 10 contacts per page
+		paginator = Paginator(queryset_list, 2) # Show 10 contacts per page
 
 		page = request.GET.get('page')
 		try:
@@ -106,7 +119,7 @@ class PostIndexView(View):
 			# If page is out of range (e.g. 9999), deliver last page of results.
 			queryset = paginator.page(paginator.num_pages)
 		context = {
-			"queryset_list": queryset,
+			"queryset": queryset,
 			"today": today,
 		}
 		return render(request, self.template, context)

@@ -27,6 +27,7 @@ class ProductReview(models.Model):
 	updated = models.DateTimeField(auto_now = True)
 	draft = models.BooleanField(default=False)
 	published = models.DateTimeField(auto_now_add=False, auto_now=False)
+	source = models.URLField(null=True, blank=True)
 	affiliate_link = models.URLField(null=True, blank=True)
 	categories = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
 	featured = models.BooleanField(default=False)

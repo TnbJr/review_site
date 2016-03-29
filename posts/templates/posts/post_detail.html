@@ -40,7 +40,10 @@
     <article>
       <p>{{ instance.content|linebreaks }}</p> 
       <div>
-       <h3  class="tags-header">Tags:</h3>
+      {% if instance.source %}
+        <h4>Read More: <em>{{ instance.source|urlize }}</em></h4>
+      {% endif%}
+       <h3 class="tags-header">Tags:</h3>
         {% for tag in instance.tags.all %}
            <span class="tags">  {{ tag.name }} </span>
         {% endfor %}
@@ -52,7 +55,10 @@
 
     <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
   </section>
-{% include 'sidebar.html' %}
+  <aside>
+    {% include 'sidebar.html' %}
+  </aside>
+
 </main>
 
   

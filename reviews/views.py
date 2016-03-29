@@ -3,20 +3,34 @@ from django.contrib import messages
 from django.views.generic import View
 from django.db.models import Avg
 from django.utils import timezone
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from urllib.parse import quote_plus
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, Http404
 from .models import ProductReview, UserReview
 from .forms import ProductReviewForm, UserReviewForm
 from braces.views import StaffuserRequiredMixin
-# Create your views here.
 
 
 class ReviewCategoryView(View):
 	template = "reviews/index.html"
 	def get(self, request, category):
-		queryset = ProductReview.objects.filter(category_slug=category, draft=False, published__lte=timezone.now())
+		queryset_list = ProductReview.objects.filter(category_slug=category, draft=False, published__lte=timezone.now())
+		if not queryset_list:
+			raise Http404
+		paginator = Paginator(queryset_list, 2) # Show 10 contacts per page
+
+		page = request.GET.get('page')
+		try:
+			queryset = paginator.page(page)
+		except PageNotAnInteger:
+			# If page is not an integer, deliver first page.
+			queryset = paginator.page(1)
+		except EmptyPage:
+			# If page is out of range (e.g. 9999), deliver last page of results.
+			queryset = paginator.page(paginator.num_pages)
 		context = {
-			"query_list": queryset,
+			"queryset": queryset,
 		}
 		return render(request, self.template, context)
 
@@ -70,7 +84,7 @@ class ReviewDetailView(View):
 		user_review = instance.userreview_set.order_by('-created')[:9]
 		review_average = UserReview.objects.filter(product_review=instance.id).aggregate(Avg('rating'))
 		user_id = request.user.id
-		print(request.session)
+		share_string = quote_plus(instance.title)
 		context = {
 			"title": instance.title,
 			"instance": instance,
@@ -78,7 +92,8 @@ class ReviewDetailView(View):
 			"average": review_average["rating__avg"],
 			"slug": slug,
 			"user_id": user_id,
-			"user_review": user_review
+			"user_review": user_review,
+			"share_string": share_string
 		}
 		return render(request, self.template, context)
 
@@ -102,7 +117,9 @@ class ReviewDetailView(View):
 			"form": self.form(initial={'user': request.user}),
 			"average": review_average["rating__avg"],
 			"slug": slug,
-			"user_id": user_id
+			"user_id": user_id,
+			"user_review": user_review,
+			"share_string": share_string
 		}
 		return render(request, self.template, context)
 
@@ -111,11 +128,23 @@ class ReviewIndexView(View):
 	template = "reviews/index.html"
 	def get(self, request):
 		if request.user.is_staff:
-			queryset = ProductReview.objects.all()
+			queryset_list = ProductReview.objects.all()
 		else:
-			queryset = ProductReview.objects.filter(draft=False, published__lte=timezone.now())
-		context={
-			"query_list": queryset
+			queryset_list = ProductReview.objects.filter(draft=False, published__lte=timezone.now())
+
+		paginator = Paginator(queryset_list, 2) # Show 10 contacts per page
+
+		page = request.GET.get('page')
+		try:
+			queryset = paginator.page(page)
+		except PageNotAnInteger:
+			# If page is not an integer, deliver first page.
+			queryset = paginator.page(1)
+		except EmptyPage:
+			# If page is out of range (e.g. 9999), deliver last page of results.
+			queryset = paginator.page(paginator.num_pages)
+		context = {
+			"queryset": queryset,
 		}
 		return render(request, self.template, context)
 

@@ -42,29 +42,31 @@
 		<tbody>
 			<tr>
 				<th>Product Dimensions</th>
-				<td>35 inches</td>
+
+				<td>{{ instance.product_dimensions}}</td>
 			</tr>
 			<tr>
-				<th>Product Weight</th>
-				<td>35 inches</td>
+				<th>Travel Conveinece</th>
+				<td>{{ instance.convenience }}</td>
 			</tr>
 			<tr>
-				<th>Product Capability</th>
-				<td>35 inches</td>
-			</tr>
-			<tr>
-				<th>Price Range </th>
-				<td>35 inches</td>
-			</tr>
-			<tr>
-				<th>Product Dimensions</th>
-				<td>35 inches</td>
+				<th>Product Use</th>
+				<td>{{ instance.concentrate_only }}</td>
 			</tr>
 		</tbody>
 	</table>
 
     <article>
       <p>{{ instance.content|linebreaks }}</p> 
+       <div>
+      {% if instance.source %}
+        <h4>Read More: <em>{{ instance.source|urlize }}</em></h4>
+      {% endif%}
+       <h3 class="tags-header">Tags:</h3>
+        {% for tag in instance.tags.all %}
+           <span class="tags">  {{ tag.name }} </span>
+        {% endfor %}
+      </div>
     </article>
 
     {% if instance.draft %}<span style="color:red;">Draft</span> {% endif %}
@@ -125,7 +127,10 @@
 	{% endif %}
 
 	 </section>
-	{% include 'sidebar.html' %}
+	 <aside >
+	 	{% include 'sidebar.html' %}
+	 </aside>
+	
  </main>
       
 

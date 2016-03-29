@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 	'users',
 	'taggit',
 	'debug_toolbar',
+	'el_pagination',
 
 
 	'django.contrib.sites',

@@ -39,6 +39,15 @@
       </span>
     </div>
 	<p class="video-para">{{  instance.content }} </p> 
+     <div>
+      {% if instance.source %}
+        <h4>Read More: <em>{{ instance.source|urlize }}</em></h4>
+      {% endif%}
+       <h3 class="tags-header">Tags:</h3>
+        {% for tag in instance.tags.all %}
+           <span class="tags">  {{ tag.name }} </span>
+        {% endfor %}
+      </div>
 	
 	<div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
 </article>

@@ -10,7 +10,7 @@
 		{% include 'sidebar.html' %}
 	</aside>
 	<section class="col-md-8">	
-		{% for obj in queryset_list %}
+		{% for obj in queryset %}
 			<div class="row ">
 				<div class="col-md-7 col-md-push-5">
 					<div class="post-cate">
@@ -45,16 +45,16 @@
 	</section>
 		<div class="pagination">
 		    <span class="step-links">
-		        {% if queryset_list.has_previous %}
-		            <a href="?page={{ queryset_list.previous_page_number }}">previous</a>
+		        {% if queryset.has_previous %}
+		            <a href="?page={{ queryset.previous_page_number }}">previous</a>
 		        {% endif %}
 
 		        <span class="current">
-		            Page {{ queryset_list.number }} of {{ queryset_list.paginator.num_pages }}.
+		            Page {{ queryset.number }} of {{ queryset.paginator.num_pages }}.
 		        </span>
 
-		        {% if queryset_list.has_next %}
-		            <a href="?page={{ queryset_list.next_page_number }}">next</a>
+		        {% if queryset.has_next %}
+		            <a href="?page={{ queryset.next_page_number }}">next</a>
 		        {% endif %}
 		    </span> 
 	</div>
