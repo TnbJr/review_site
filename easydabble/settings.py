@@ -1,4 +1,5 @@
 import os 
+from .secret import SECRET_KEY
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -14,12 +15,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'SECRET_KEY'
+SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*]
 
 
 # Application definition
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
 	'reviews',
 	'users',
 	'taggit',
+	'storages',
 	'debug_toolbar',
 
 
@@ -142,7 +144,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_root")
+# STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_root")
 
 STATICFILES_DIRS = [
 	os.path.join(BASE_DIR, "static"),
@@ -156,7 +158,6 @@ STATICFILES_FINDERS = (
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_root") 
-oin(os.path.dirname(BASE_DIR), "media_root") 
 
 
 AUTHENTICATION_BACKENDS = (
@@ -188,17 +189,32 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 # 		'VERSION': 'v2.4'}}
 
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
+access_key = 'AKIAJAQZME4IJ2ZUTMEQ'
+secret_key = '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'
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+AWS_ACCESS_KEY_ID = access_key
+AWS_SECRET_ACCESS_KEY = secret_key
+AWS_STORAGE_BUCKET_NAME = 'easydabble'
 
-ALLOWED_HOSTS = ['*']
+STATICFILES_STORAGE = 'easydabble.s3utils.StaticRootS3BotoStorage'
+# DEFAULT_FILE_STORAGE = 'easydabble.s3utils.MediaRootS3BotoStorage'
 
-DEBUG = False
+S3_URL = 'http://%s.s3.amazonaws.com/' %AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = S3_URL + "media/"
+STATIC_URL = S3_URL + "static/"
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-
+DEBUG_TOOLBAR_PANELS = [
+ 'debug_toolbar.panels.versions.VersionsPanel',
+ 'debug_toolbar.panels.timer.TimerPanel',
+ 'debug_toolbar.panels.settings.SettingsPanel',
+ 'debug_toolbar.panels.headers.HeadersPanel',
+ 'debug_toolbar.panels.request.RequestPanel',
+ 'debug_toolbar.panels.sql.SQLPanel',
+ # 'debug_toolbar.panels.staticfiles.StaticFilesPanel',                                                                                                                                    
+ 'debug_toolbar.panels.templates.TemplatesPanel',
+ 'debug_toolbar.panels.cache.CachePanel',
+ 'debug_toolbar.panels.signals.SignalsPanel',
+ 'debug_toolbar.panels.logging.LoggingPanel',
+ 'debug_toolbar.panels.redirects.RedirectsPanel',
+]
