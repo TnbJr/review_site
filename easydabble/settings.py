@@ -205,6 +205,11 @@ MEDIA_URL = S3_URL + "media/"
 STATIC_URL = S3_URL + "static/"
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
 DEBUG_TOOLBAR_PANELS = [
  'debug_toolbar.panels.versions.VersionsPanel',
  'debug_toolbar.panels.timer.TimerPanel',
